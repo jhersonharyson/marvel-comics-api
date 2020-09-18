@@ -20,6 +20,22 @@ export const HeroNameLabel = styled.div`
   font-size: 15px;
   font-weight: bold;
 `;
+
+export const Container = styled.div`
+  display: flex;
+  flex: 1;
+  justify-content: flex-start;
+  width: 100%;
+`;
+
+export const ContainerList = styled.div`
+  display: flex;
+  flex: 1;
+  justify-content: flex-start;
+  flex-direction: row;
+  margin-left: 50px;
+`;
+
 export const ActorNameLabel = styled.div`
   font-size: 10px;
   font-weight: 200;
@@ -30,8 +46,8 @@ export const CharacterLabel = styled.div`
   margin-top: 8px;
   transition: 0.3s;
 
-  &:hover{
-    transform: scale(1.15)
+  &:hover {
+    transform: scale(1.15);
   }
 `;
 
@@ -61,4 +77,8 @@ export const Searchbar = styled.input`
   border: none;
   padding: 8px 15px;
   outline: 0;
+`;
+
+export const Col = styled.div`
+ 
 `;

@@ -5,33 +5,21 @@ import {
   LabelContainer,
   HeroNameLabel,
   ActorNameLabel,
-  CharacterLabel
+  CharacterLabel,
+  Container,
+  ContainerList,
+  Col
 } from "./styles";
 
 function MainHeroList() {
   return (
-    <div
-      style={{
-        display: "flex",
-        flex: 1,
-        justifyContent: "flex-start",
-        width: "100%",
-      }}
-    >
-      <div
-        style={{
-          display: "flex",
-          flex: 1,
-          justifyContent: "flex-start",
-          flexDirection: "row",
-          marginLeft: "50px",
-        }}
-      >
-        <div>
+    <Container>
+      <ContainerList>
+        <Col>
           <SideIndicator />
           <SideIndicator principal />
           <SideIndicator />
-        </div>
+        </Col>
         <LabelContainer>
           <CharacterLabel>
             <HeroNameLabel>SPIDER MAN</HeroNameLabel>
@@ -46,8 +34,8 @@ function MainHeroList() {
             <ActorNameLabel>TOM HOLAND</ActorNameLabel>
           </CharacterLabel>
         </LabelContainer>
-      </div>
-    </div>
+      </ContainerList>
+    </Container>
   );
 }
 
