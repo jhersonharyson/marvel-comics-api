@@ -40,6 +40,7 @@ const GlobalStyle = createGlobalStyle`
   /* Works on Chrome/Edge/Safari */
   *::-webkit-scrollbar {
     width: 2px;
+    height: 2px;
   }
   *::-webkit-scrollbar-track {
     background: #534c3e3d;
@@ -48,6 +49,15 @@ const GlobalStyle = createGlobalStyle`
     background-color: #534c3e3d;
     border-radius: 20px;
     border: 3px solid #534c3e3d;
+  }
+  *::-webkit-scrollbar-thumb:horizontal{
+    background-color: #000;
+    border-radius: 10px;
+    width: 1px;
+  }
+
+  *::-webkit-scrollbar:horizontal {
+    width: 2px;
   }
 
 
