@@ -29,7 +29,7 @@ export const Container = styled.div`
     .sidebar-right{
         display: flex;
         flex: 1;
-        background-color: red;
+        /* background-color: red; */
     }
 `;
 
