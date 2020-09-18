@@ -22,7 +22,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    background-color: #0e2c48;
+    background-color: #beb571; /* #030303; /* #0e2c48;*/
     scrollbar-width: thin;          /* "auto" or "thin"  */
     scrollbar-color: blue orange;
   }
