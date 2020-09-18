@@ -3,20 +3,14 @@ import { FiChevronRight } from "react-icons/fi";
 import FooterCarousel from "../FooterCarousel";
 import { ItemComicsList } from "../ComicsList";
 
+import { ActionLabel } from "./styles";
 
 function Footer() {
   return (
     <div style={{ overflowX: "visible" }}>
-      <div
-        style={{
-          marginLeft: 50,
-          marginBottom: 16,
-          display: "flex",
-          alignItems: "center",
-        }}
-      >
+      <ActionLabel>
         All comics <FiChevronRight />
-      </div>
+      </ActionLabel>
       <div
         style={{
           width: "100vw",
