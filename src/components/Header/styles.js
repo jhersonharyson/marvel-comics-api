@@ -6,7 +6,8 @@ export const HeaderBar = styled.div`
 	display: flex;
 	flex-direction: row;
 	align-items: flex-end;
-	padding: 50px;
+	padding: 30px 50px 40px 50px;
+
 	box-sizing: border-box ;
 `;
 
@@ -21,7 +22,7 @@ export const Navbar = styled.ul`
 
 	li {
 		list-style: none;
-		padding: 0px 30px;
+		padding-left: 35px;
 		font-size: 18px;
 	}
 	
@@ -37,6 +38,11 @@ export const Searchbar = styled.form`
 	background-color: #fff;
 	border-radius: 25px;
 	padding: 8px 8px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	margin-left: 35px;
+	width: 300px;
+	
 	
 	input {
 		border: none;
