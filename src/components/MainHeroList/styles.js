@@ -49,6 +49,8 @@ export const CharacterLabel = styled.div`
   &:hover {
     transform: scale(1.15);
   }
+
+  ${({active})=>active ? 'transform: scale(1.1);' : ''}
 `;
 
 export const Logo = styled.img.attrs({

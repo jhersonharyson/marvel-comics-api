@@ -12,17 +12,17 @@ import backgroundTexture from "./assets/images/dark-denim.png";
 import { StoreProvider } from "./context/provider";
 
 const thema = {
-  ironman: {
+  IRON_MAN: {
     background: backgroundIronMan,
     color: "#beb571",
     name: "IRON MAN",
   },
-  spiderman: {
+  SPIDER_MAN: {
     background: backgroundSpiderMan,
     color: "#0e2c48",
     name: "SPIDER MAN",
   },
-  blackpanther: {
+  BLACK_PANTHER: {
     background: backgroundBlackPhanter,
     color: "#030303",
     name: "BLACK PANTHER",
@@ -30,7 +30,7 @@ const thema = {
 };
 
 function App() {
-  const [currentThema, setCurrentThema] = useState(thema["blackpanther"]);
+  const [currentThema, setCurrentThema] = useState(thema["SPIDER_MAN"]);
 
   const dispatch = (newTheme) => {
     alert(newTheme);
