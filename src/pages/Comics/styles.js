@@ -6,6 +6,8 @@ export const Container = styled.div`
 `;
 
 export const Box = styled.div`
+    display: flex;
+    flex-direction: column;
     flex: 1;
 `;
 
@@ -27,7 +29,7 @@ export const TitleBar = styled.div`
     }
 `;
 
-export const Title = styled.h1`
+export const ComicTitle = styled.h1`
     color: #fff;
 `;
 
@@ -35,15 +37,16 @@ export const InformationBox = styled.div`
     flex: 1;
     margin: 0px 15px;
 
-    h2 {
-        color: #fff;
-        text-transform: uppercase;
-        font-size: 18px;
-        font-weight: 700;
-    }
-
     p {
-        margin: 10px 0px 40px;
+        margin: 0px 0px 40px;
         color: #fff;
     }
+`;
+
+export const Title = styled.h2`
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 10px;
 `;

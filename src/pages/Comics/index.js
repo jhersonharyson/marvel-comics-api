@@ -1,9 +1,10 @@
 import React from "react";
-import { Container, Box, Flex, TitleBar, Title, InformationBox } from "./styles";
+import { Container, Box, Flex, TitleBar, ComicTitle, InformationBox, Title } from "./styles";
 
 import {FiArrowLeft} from 'react-icons/fi'
 import { Link } from "react-router-dom";
 import Header from "../../components/Header";
+import ComicsList from "../../components/ComicsList";
 
 function Comics() {
 	return (
@@ -13,7 +14,7 @@ function Comics() {
 				<Box>
 					<TitleBar>
 						<Link to="/"><FiArrowLeft /></Link>
-						<Title>Ant-Man (2003) #4</Title>
+						<ComicTitle>Ant-Man (2003) #4</ComicTitle>
 					</TitleBar>
 
 					<Flex>
@@ -26,7 +27,7 @@ function Comics() {
 						</Box>
 
 						<InformationBox>
-							<h2>Resume</h2>
+							<Title>Resume</Title>
 							<p>
 								Lorem ipsum dolor sit amet, consectetur
 								adipisicing elit. Consequatur, veniam iure animi
@@ -36,12 +37,15 @@ function Comics() {
 								autem.
 							</p>
 
-							<h2>Spider-Man</h2>
+							<Title>Spider-Man</Title>
 							<p>creator</p>
 						</InformationBox>
 					</Flex>
 				</Box>
-				<Box>laksmdklsmdkladsm</Box>
+				<Box style={{justifyContent: "center"}}>
+					<Title style={{marginLeft: 40}}>Images</Title>
+					<ComicsList />
+				</Box>
 			</Container>
 		</>
 	);
