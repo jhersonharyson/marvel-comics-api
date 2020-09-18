@@ -39,21 +39,32 @@ function ComicsList({ list }) {
 export function MainComicsList({ list, size = 10 }) {
   return (
     <ComicRow>
-     
       <ComicRow>
-        {Array(size).fill(1).map(() => (
-          <Link to="">
-            <ComicCover
-              style={{marginLeft: 8, marginRight: 0}}  
-              src="http://x.annihil.us/u/prod/marvel/i/mg/3/40/4bb4680432f73/portrait_medium.jpg"
-              alt="spider-man cover"
-            />
-          </Link>
-        ))}
+        {Array(size)
+          .fill(1)
+          .map(() => (
+            <Link to="">
+              <ComicCover
+                style={{ marginLeft: 8, marginRight: 0 }}
+                src="http://x.annihil.us/u/prod/marvel/i/mg/3/40/4bb4680432f73/portrait_medium.jpg"
+                alt="spider-man cover"
+              />
+            </Link>
+          ))}
       </ComicRow>
-
-      
     </ComicRow>
+  );
+}
+
+export function ItemComicsList() {
+  return (
+    <Link to="">
+      <ComicCover
+        style={{ marginLeft: 8, marginRight: 0 }}
+        src="http://x.annihil.us/u/prod/marvel/i/mg/3/40/4bb4680432f73/portrait_medium.jpg"
+        alt="spider-man cover"
+      />
+    </Link>
   );
 }
 

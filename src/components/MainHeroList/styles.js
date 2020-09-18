@@ -28,6 +28,11 @@ export const ActorNameLabel = styled.div`
 export const CharacterLabel = styled.div`
   margin-bottom: 24px;
   margin-top: 8px;
+  transition: 0.3s;
+
+  &:hover{
+    transform: scale(1.15)
+  }
 `;
 
 export const Logo = styled.img.attrs({

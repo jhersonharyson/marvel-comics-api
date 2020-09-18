@@ -15,6 +15,9 @@ export const Container = styled.div`
         justify-content: space-between;
         position: relative;
         padding: 40px 0 0 0;
+        /* max-width: 300px; */
+        overflow:visible;
+        /* z-index: 5 */
     }
 
     .middle-content{
@@ -26,7 +29,7 @@ export const Container = styled.div`
     .sidebar-right{
         display: flex;
         flex: 1;
-        /* background-color: red; */
+        background-color: red;
     }
 `;
 
