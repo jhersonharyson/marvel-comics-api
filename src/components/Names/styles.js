@@ -9,7 +9,7 @@ export const Container = styled.div`
 
 export const Name = styled.em`
   font-weight: ${({ size }) => size};
-  font-size: 64px;
+  font-size: 56px;
   transition: 0.3s;
 
   &:hover {

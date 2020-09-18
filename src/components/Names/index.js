@@ -8,7 +8,7 @@ function Names({ name }) {
       <Name size={"900"}>{name}</Name>
       <Name size={"700"}>{name}</Name>
       <Name size={"600"}>{name}</Name>
-      <Name size={"100"}>{name}</Name>
+      <Name size={"900"}>{name}</Name>
     </Container>
   );
 }
