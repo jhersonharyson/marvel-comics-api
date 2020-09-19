@@ -1,54 +1,61 @@
-import React from "react";
-import { Container, Box, Flex, TitleBar, ComicTitle, InformationBox, Title } from "./styles";
+import React, { useState } from "react";
+import {
+  Container,
+  Box,
+  Flex,
+  TitleBar,
+  ComicTitle,
+  InformationBox,
+  Title,
+  SearchContainerField,
+} from "./styles";
 
-import {FiArrowLeft} from 'react-icons/fi'
+import { FiArrowLeft } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import Header from "../../components/Header";
-import ComicsList from "../../components/ComicsList";
+import ComicsList, { MainComicsList } from "../../components/ComicsList";
+import Search from "../../components/Search";
+import ComicsGallery from "../../components/ComicsGallery";
+import MainComicsDetail from "../../components/MainComicsDetail";
 
 function Comics() {
-	return (
-		<>
-			<Header />
-			<Container>
-				<Box>
-					<TitleBar>
-						<Link to="/"><FiArrowLeft /></Link>
-						<ComicTitle>Ant-Man (2003) #4</ComicTitle>
-					</TitleBar>
+  const [query, setQuery] = useState({
+    query: "",
+    filter: "",
+    queryIsId: false,
+  });
+  const [selected, setSelected] = useState({});
+  const [loading, setLoading] = useState(false);
 
-					<Flex>
-						<Box>
-							<img
-								src="https://i.pinimg.com/originals/1e/b7/b9/1eb7b91872acb58f6577ceb854313cc5.png"
-                                alt="comics"
-                                style={{maxWidth: "100%"}}
-							/>
-						</Box>
+  const onSerachChange = (query) => {
+    setQuery(query);
+    setLoading(query.length >= 3 ? true : false);
+  };
 
-						<InformationBox>
-							<Title>Resume</Title>
-							<p>
-								Lorem ipsum dolor sit amet, consectetur
-								adipisicing elit. Consequatur, veniam iure animi
-								tempore dolorum voluptatum facere? Repudiandae,
-								repellendus ratione vel necessitatibus unde
-								earum inventore illo quo, odit asperiores soluta
-								autem.
-							</p>
+  const onSearchEnd = () => {
+    setLoading(false)
+  }
 
-							<Title>Spider-Man</Title>
-							<p>creator</p>
-						</InformationBox>
-					</Flex>
-				</Box>
-				<Box style={{justifyContent: "center"}}>
-					<Title style={{marginLeft: 40}}>Images</Title>
-					<ComicsList />
-				</Box>
-			</Container>
-		</>
-	);
+  const handleSelect = (selected) => {
+    setSelected(selected)
+    window.location.hash = "#result";
+  }
+
+  return (
+    <>
+      <Header />
+      <SearchContainerField>
+        <Search onChange={onSerachChange} loading={loading} />
+        <ComicsGallery
+          {...query}
+          handleSelect={handleSelect}
+          onSearchEnd={onSearchEnd}
+        />
+      </SearchContainerField>
+      {/* {JSON.stringify(selected)} */}
+      {selected.title && <MainComicsDetail comic={selected}/>}
+    </>
+  );
 }
 
 export default Comics;

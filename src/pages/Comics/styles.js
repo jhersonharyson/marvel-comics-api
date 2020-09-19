@@ -5,10 +5,18 @@ export const Container = styled.div`
     padding: 0px 50px;
 `;
 
+export const SearchContainerField = styled.div`
+    display: flex; 
+    padding: 0px 50px;
+    flex-direction: column;
+    overflow: hidden;
+`;
+
 export const Box = styled.div`
     display: flex;
     flex-direction: column;
     flex: 1;
+    margin-top: -40px;
 `;
 
 export const Flex = styled.div`
