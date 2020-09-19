@@ -8,7 +8,8 @@ const flickityOptions = {
     autoPlay: 4000,
     prevNextButtons: false,
     friction: .07,
-    selectedAttraction: .01
+    selectedAttraction: .01,
+    contain: true,
 
 }
  
