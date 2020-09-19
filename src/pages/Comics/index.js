@@ -33,13 +33,21 @@ function Comics() {
   };
 
   const onSearchEnd = () => {
-    setLoading(false)
-  }
+    setLoading(false);
+  };
 
   const handleSelect = (selected) => {
-    setSelected(selected)
-    window.location.hash = "#result";
-  }
+    setSelected(selected);
+
+    setTimeout(
+      () =>
+        document.querySelector("#result").scrollIntoView({
+          behavior: "smooth",
+        }),
+      200
+    );
+    
+  };
 
   return (
     <>
@@ -53,7 +61,7 @@ function Comics() {
         />
       </SearchContainerField>
       {/* {JSON.stringify(selected)} */}
-      {selected.title && <MainComicsDetail comic={selected}/>}
+      {selected.title && <MainComicsDetail comic={selected} />}
     </>
   );
 }
