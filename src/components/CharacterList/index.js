@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { ComicRow, ComicCover } from "./styles";
+import { ComicRow, ComicCover, Button } from "./styles";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 
 function CharacterList({ list }) {
@@ -68,29 +68,36 @@ export function ItemCharacterList() {
   );
 }
 
-export function MiniCharacterList({ list }) {
+export function MiniCharacterList({ list, style = {} }) {
+  const [index, setIndex] = useState(list.length - 1);
+
+  const getInfinitIndex = (i) =>
+    index + i <= -list.length
+      ? 0
+      : index + i >= list.length
+      ? index + i - list.length
+      : index + i;
+
   return (
-    <ComicRow>
-      <FiChevronLeft size={24} />
+    <ComicRow style={style}>
+      <Button
+        onClick={() => setIndex(index == 0 ? list.length - 1 : index - 1)}
+      >
+        <FiChevronLeft size={24} />
+      </Button>
 
       <ComicRow>
+        <ComicCover src={list[getInfinitIndex(0)]} alt="1" />
         <ComicCover
-          src="http://x.annihil.us/u/prod/marvel/i/mg/3/40/4bb4680432f73/portrait_small.jpg"
-          alt="spider-man cover"
+          src={list[getInfinitIndex(1)]}
+          alt="2"
+          active
         />
-
-        <ComicCover
-          src="http://x.annihil.us/u/prod/marvel/i/mg/3/40/4bb4680432f73/portrait_medium.jpg"
-          alt="spider-man cover"
-        />
-
-        <ComicCover
-          src="http://x.annihil.us/u/prod/marvel/i/mg/3/40/4bb4680432f73/portrait_small.jpg"
-          alt="spider-man cover"
-        />
+        <ComicCover src={list[getInfinitIndex(2)]} alt="3" />
       </ComicRow>
-
-      <FiChevronRight size={24} />
+      <Button onClick={() => setIndex(index >= 2 ? 0 : index + 1)}>
+        <FiChevronRight size={24} />
+      </Button>
     </ComicRow>
   );
 }
