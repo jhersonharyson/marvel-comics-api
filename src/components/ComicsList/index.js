@@ -56,21 +56,21 @@ export function MainComicsList({ list, size = 10 }) {
   );
 }
 
-export function ItemComicsList(comic) {
+export function ItemComicsList(comic, callbak=()=>{}) {
   return (
-    <Link to="" key={comic?.title}>
+    <div key={comic?.id} onClick={()=>callbak(comic)}>
       <ComicCover
         style={{ marginLeft: 8, marginRight: 0 }}
         src={`${comic?.thumbnail?.path}/portrait_medium.jpg`}
         alt={comic?.title}
       />
-    </Link>
+    </div>
   );
 }
 
-export function LoadButton({ onClick = () => {}, next }) {
+export function LoadButton({ onClick = () => {}, next, key }) {
   return (
-    <ComicCol>
+    <ComicCol key={key}>
       <ComicRow>
         <ComicActionButton onClick={()=>onClick(next)}>
           {next ? <FiChevronRight size={48} /> : <FiChevronLeft size={48} />}

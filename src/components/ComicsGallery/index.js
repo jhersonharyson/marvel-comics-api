@@ -77,21 +77,32 @@ function ComicsGallery({
   return (
     <ComicCol>
       <ComicRow>
-        <PaginatorInfo side="flex-start">
-          All comics for "{query}" in {total} results
-        </PaginatorInfo>
+        {query && (
+          <PaginatorInfo side="flex-start">
+            {total == 0 && query
+              ? `Ops... ${total} result found for \"${query}\"`
+              : `All comics for \"${query}\" in ${total} results`}
+          </PaginatorInfo>
+        )}
       </ComicRow>
-      <ComicRow>
+      <ComicRow style={{ minHeight: "200px" }}>
         {loading ? (
           <Loader />
         ) : (
-          <ComicsCarousel items={buildGallery(results.map(ItemComicsList))} />
+          <ComicsCarousel
+            items={buildGallery(
+              results.map((result) => ItemComicsList(result, handleSelect))
+            )}
+          />
         )}
       </ComicRow>
       <ComicRow>
-        <PaginatorInfo side="flex-end">
-          {index + 1} / {Math.ceil(total / limit)}
-        </PaginatorInfo>
+        {query &&
+          !(total == 0 && query) && (
+            <PaginatorInfo side="flex-end">
+              {index + 1} / {Math.ceil(total / limit)}
+            </PaginatorInfo>
+          )}
       </ComicRow>
     </ComicCol>
   );
