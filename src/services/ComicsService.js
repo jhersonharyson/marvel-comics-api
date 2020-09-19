@@ -24,6 +24,7 @@ export default class ComicsService {
       const list = response.data.data.results;
       let listOfComics = list.map(
         ({
+          id,
           description = "",
           images,
           thumbnail,
@@ -34,6 +35,7 @@ export default class ComicsService {
           title,
         }) => {
           return {
+            id,
             images,
             thumbnail,
             title,
