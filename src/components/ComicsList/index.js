@@ -56,13 +56,13 @@ export function MainComicsList({ list, size = 10 }) {
   );
 }
 
-export function ItemComicsList() {
+export function ItemComicsList(comic) {
   return (
-    <Link to="">
+    <Link to="" key={comic?.title}>
       <ComicCover
         style={{ marginLeft: 8, marginRight: 0 }}
-        src="http://x.annihil.us/u/prod/marvel/i/mg/3/40/4bb4680432f73/portrait_medium.jpg"
-        alt="spider-man cover"
+        src={`${comic?.thumbnail?.path}/portrait_medium.jpg`}
+        alt={comic?.title}
       />
     </Link>
   );
