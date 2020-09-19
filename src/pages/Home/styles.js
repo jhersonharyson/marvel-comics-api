@@ -1,4 +1,15 @@
-import styled from 'styled-components'
+import styled, {keyframes} from 'styled-components'
+
+const fadeInSlide = keyframes`
+  from{
+    opacity: 0;
+    margin-top: 300px;
+  }
+  to{
+    opacity: 1;
+    margin-top: 0px;
+  }
+`
 
 export const Container = styled.div`
     display: flex; 
@@ -6,7 +17,7 @@ export const Container = styled.div`
     flex: 1;
     height: 100%;
     /* background-color: yellow; */
-
+    animation: ${fadeInSlide} 1.2s forwards;
     .sidebar-left{
         display: flex;
         flex: 1;
