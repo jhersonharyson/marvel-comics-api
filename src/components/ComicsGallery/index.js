@@ -32,7 +32,7 @@ function ComicsGallery({
 
   useEffect(() => {
     const fetch = async () => {
-      if (query.length > 3) {
+      if (query.length >= 3) {
         setLoading(true);
         const response = await new ComicsService().getComicResourceByStartWithTitle(
           query,
@@ -79,7 +79,7 @@ function ComicsGallery({
       <ComicRow>
         {query && (
           <PaginatorInfo side="flex-start">
-            {total == 0 && query
+            { query.length < 3 ? `Ops... type minimun 3 characters for a searching` : total == 0 && query.length >= 3
               ? `Ops... ${total} result found for \"${query}\"`
               : `All comics for \"${query}\" in ${total} results`}
           </PaginatorInfo>
