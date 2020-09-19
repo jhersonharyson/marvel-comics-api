@@ -1,6 +1,5 @@
 import HerosModel from "./../models/HerosModel";
 import axios from "./../http";
-import HomeStore from "./../context/home-provider";
 
 export default class CharacterService {
   URL = {
