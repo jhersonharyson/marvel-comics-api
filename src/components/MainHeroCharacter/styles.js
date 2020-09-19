@@ -15,6 +15,8 @@ export const LabelContainer = styled.div`
   margin-top: 4px;
 `;
 export const MiniCharacterListContainer = styled.div`
+  display: flex; 
+  justify-content: center;
  
   margin-top: 12px;
   margin-bottom: 16px;
