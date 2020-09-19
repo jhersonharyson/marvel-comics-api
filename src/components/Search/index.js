@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { FiSearch } from "react-icons/fi";
 import Loader from "../Loader";
+import useDebounce from "../UseDebounce";
 import { Searchbar, Container, Dropdown, DropdownContent } from "./styles";
 
 function Search({ loading = true, onChange = () => {} }) {
@@ -9,47 +10,60 @@ function Search({ loading = true, onChange = () => {} }) {
   const [filter, setFilter] = useState("COMICS");
 
   const filters = { COMICS: "Comics", SUPER_HEROS: "Super Heros" };
-  const placeholders = { COMICS: 'Type a HQ\'s title or a id...', SUPER_HEROS: 'Type Super Hero name or a id...' };
+  const placeholders = {
+    COMICS: "Type a HQ's title or a id...",
+    SUPER_HEROS: "Type Super Hero name or a id...",
+  };
 
   let timer;
 
   useEffect(() => {
     return clearTimeout(timer);
-  });
+  }, []);
 
-  const handleTextChange = ({ target }) => {
-    const { value } = target;
-    clearTimeout(timer);
+  const debouncedSearchTerm = useDebounce(query, 1000);
 
-    timer = setTimeout(() => {
-      setQuery(value);
-      try{
-        setQueryIsId(Number(parseInt(query)) != NaN)
-      }catch(e){
-        setQueryIsId(false)
-      }
-      onChange({query, filter, queryIsId});
-    }, 500);
+
+  useEffect(() => {
+    if (debouncedSearchTerm) {
+      // Fire off our API call
+      console.log({ query: debouncedSearchTerm, filter, queryIsId });
+      onChange({ query: debouncedSearchTerm, filter, queryIsId });
+    }
+  }, [debouncedSearchTerm]);
+
+  const handleTextChange = ({ target: {value} }) => {
+    setQuery(value);
+    try {
+      setQueryIsId(Number(parseInt(value)) != NaN);
+    } catch (e) {
+      setQueryIsId(false);
+    }
   };
 
   return (
     <Container>
+
       <Searchbar>
-        <label class="dropdown">
-          <div class="dd-button">{filters[filter]} </div>
-          <input type="checkbox" class="dd-input" id="test" />
-          <ul class="dd-menu">
+        <label className="dropdown">
+          <div className="dd-button">{filters[filter]} </div>
+          <input type="checkbox" className="dd-input" id="test" />
+          <ul className="dd-menu">
             <li onClick={() => setFilter("COMICS")}>
               <em>{filters.COMICS}</em>
             </li>
-            <li class="divider"></li>
+            <li className="divider"></li>
             <li onClick={() => setFilter("SUPER_HEROS")}>
               <em>{filters.SUPER_HEROS}</em>
             </li>
           </ul>
         </label>
 
-        <input onChange={handleTextChange} placeholder={placeholders[filter]} />
+        <input
+          onChange={handleTextChange}
+          placeholder={placeholders[filter]}
+          value={query}
+        />
 
         {loading ? (
           <Loader />
