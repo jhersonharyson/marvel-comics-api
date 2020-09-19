@@ -1,27 +1,26 @@
-import React from "react";
+import React, { useContext } from "react";
 import { FiChevronRight } from "react-icons/fi";
-import FooterCarousel from "../FooterCarousel";
 import { ItemComicsList } from "../ComicsList";
+import FooterCarousel from "../FooterCarousel";
 
-import { ActionLabel } from "./styles";
+import Store from "./../../context/provider";
+
+import { ActionLabel, CarouselContainer } from "./styles";
 
 function Footer() {
+  const store = useContext(Store);
   return (
     <div style={{ overflowX: "visible" }}>
       <ActionLabel>
         All comics <FiChevronRight />
       </ActionLabel>
-      <div
-        style={{
-          width: "100vw",
-          height: "25vh",
-          backgroundColor: "#6f686866",
-          overflow: "hidden",
-          paddingTop: "12px",
-        }}
-      >
-        <FooterCarousel items={Array(15).fill(ItemComicsList())} />
-      </div>
+      <CarouselContainer>
+        {!!store.comics.length && (
+          <FooterCarousel
+            items={store?.comics?.map((comic) => ItemComicsList(comic))}
+          />
+        )}
+      </CarouselContainer>
     </div>
   );
 }
