@@ -15,10 +15,16 @@ export default class ComicsService {
     );
   }
 
-  async getComicResourceByStartWithTitle(title='', _offset = 0, _limit = 4) {
+  getComicByComicId(comicId='') {
+    return axios.get(
+      `${this.URL.COMICS}/${comicId}`
+    );
+  }
+
+  async getComicResourceByStartWithTitle(isComicId = false, title='', _offset = 0, _limit = 4) {
     
     try {
-      const response = await this.getComicByStartWithTitle(title, _offset, _limit);
+      const response = isComicId ? await this.getComicByComicId(title) : await this.getComicByStartWithTitle(title, _offset, _limit);
       console.log(response);
       const { offset, limit, total, count } = response.data.data;
       const list = response.data.data.results;
