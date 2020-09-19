@@ -22,7 +22,8 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    background-color: ${({color})=>color || '#030303'};/* #beb571; /* #030303; /* #0e2c48;*/
+    background-color: ${({ color }) =>
+      color || "#030303"};/* #beb571; /* #030303; /* #0e2c48;*/
     scrollbar-width: thin;          /* "auto" or "thin"  */
     scrollbar-color: blue orange;
   }
@@ -32,7 +33,11 @@ const GlobalStyle = createGlobalStyle`
   }
 
   .icon{
-    color:  ${ ({color})=> color || '#0e2c48'} !important;
+    color:  ${({ color }) => color || "#0e2c48"} !important;
+  }
+
+  html {
+    scroll-behavior: smooth;
   }
 
 
