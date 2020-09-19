@@ -13,7 +13,7 @@ const flickityOptions = {
 }
  
 function CharacterCarousel({items = []}) {
-  if(!items.length) return  
+  if(!items.length) return null
   return (
     <Flickity
       options={flickityOptions}
