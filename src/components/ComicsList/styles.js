@@ -3,6 +3,8 @@ import styled from 'styled-components';
 export const ComicRow = styled.div`
     display: flex;
     align-items: center;
+    justify-content: flex-end;
+    margin-top: 16px;
 `;
 
 export const ComicCol = styled.div`
@@ -37,4 +39,14 @@ export const ComicActionButton = styled.div`
     &:hover {
         transform: scale(1.25);
     }
+`;
+
+export const Button = styled.div`
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: 0.3s;
+  &:hover{
+      transform: scale(1.15)
+  }
 `;
