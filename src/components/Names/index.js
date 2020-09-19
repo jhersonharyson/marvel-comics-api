@@ -2,9 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Container, Name } from "./styles";
 
-function Names({ name }) {
+function Names({ name, left }) {
   return (
-    <Container>
+    <Container left={left}>
       <Name size={"900"}>{name}</Name>
       <Name size={"700"}>{name}</Name>
       <Name size={"600"}>{name}</Name>
