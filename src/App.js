@@ -4,41 +4,47 @@ import Globalstyles from "./Globalstyles";
 import Routes from "./routes";
 
 import backgroundBar from "./assets/images/lines.png";
-import backgroundSpiderMan from "./assets/images/spider-man-principal.png";
-import backgroundBlackPhanter from "./assets/images/black-panther-principal.png";
-import backgroundIronMan from "./assets/images/iron-man-principal.png";
 import backgroundTexture from "./assets/images/dark-denim.png";
 
 import { StoreProvider } from "./context/provider";
 
-const thema = {
-  IRON_MAN: {
-    background: backgroundIronMan,
-    color: "#beb571",
-    name: "IRON MAN",
-  },
-  SPIDER_MAN: {
-    background: backgroundSpiderMan,
-    color: "#0e2c48",
-    name: "SPIDER MAN",
-  },
-  BLACK_PANTHER: {
-    background: backgroundBlackPhanter,
-    color: "#030303",
-    name: "BLACK PANTHER",
-  },
-};
+import { Theme as theme } from "./models/HerosModel";
+
+import CharacterService from "./services/CharacterService";
+import ComicsService from "./services/ComicsService";
+
+
 
 function App() {
-  const [currentThema, setCurrentThema] = useState(thema["SPIDER_MAN"]);
+  const [currentTheme, setCurrentTheme] = useState(theme["SPIDER_MAN"]);
+  const [comics, setComics] = useState([]);
+  const [hero, setHero] = useState({});
+
+  useEffect(() => {
+    const getHeroInfo = async () => {
+      const character = await new CharacterService().getCharacterDescription(
+        currentTheme.characterId
+      );
+      setHero(character)
+      setComics([]);
+      Promise.all(
+        character.comics?.map(({ resourceURI }) =>
+          new ComicsService().getComicByResourceUrl(resourceURI)
+        )
+      ).then((comics) => {
+        setComics([]);
+        setComics(comics);
+      });
+    };
+    getHeroInfo();
+  }, [currentTheme]);
 
   const dispatch = (newTheme) => {
-    alert(newTheme);
-    setCurrentThema(thema[newTheme]);
+    setCurrentTheme(theme[newTheme]);
   };
 
   return (
-    <StoreProvider value={{ ...currentThema, dispatch }}>
+    <StoreProvider value={{ ...currentTheme, hero, comics, dispatch }}>
       <div
         style={{
           backgroundImage: `url(${backgroundTexture})`,
@@ -55,7 +61,7 @@ function App() {
         >
           <div
             style={{
-              backgroundImage: `url(${currentThema.background})`,
+              backgroundImage: `url(${currentTheme.background})`,
               backgroundRepeat: "no-repeat",
               backgroundOrigin: "content-box",
               backgroundPositionX: "0",
@@ -73,7 +79,7 @@ function App() {
                 height: "100vh",
               }}
             >
-              <Globalstyles color={currentThema.color} />
+              <Globalstyles color={currentTheme.color} />
               <Routes />
             </div>
           </div>
