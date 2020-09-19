@@ -11,8 +11,8 @@ function Search({ loading = true, onChange = () => {} }) {
 
   const filters = { COMICS: "Comics", SUPER_HEROS: "Super Heros" };
   const placeholders = {
-    COMICS: "Type a HQ's title or a id...",
-    SUPER_HEROS: "Type Super Hero name or a id...",
+    COMICS: "Type a HQ's title or id...",
+    SUPER_HEROS: "Type Super Hero name or id...",
   };
 
   let timer;
@@ -23,27 +23,29 @@ function Search({ loading = true, onChange = () => {} }) {
 
   const debouncedSearchTerm = useDebounce(query, 1000);
 
-
   useEffect(() => {
     if (debouncedSearchTerm) {
       // Fire off our API call
-      console.log({ query: debouncedSearchTerm, filter, queryIsId });
-      onChange({ query: debouncedSearchTerm, filter, queryIsId });
+      console.log({ query: debouncedSearchTerm, filter, queryIsId: verifyQueryIsId(debouncedSearchTerm) });
+      onChange({ query: debouncedSearchTerm, filter, queryIsId: verifyQueryIsId(debouncedSearchTerm) });
     }
   }, [debouncedSearchTerm]);
 
-  const handleTextChange = ({ target: {value} }) => {
+  const handleTextChange = ({ target: { value } }) => {
     setQuery(value);
-    try {
-      setQueryIsId(Number(parseInt(value)) != NaN);
-    } catch (e) {
-      setQueryIsId(false);
-    }
+    setQueryIsId(verifyQueryIsId(value))
   };
+
+  const verifyQueryIsId = (query) => {
+    try {
+      return !isNaN(Number(parseInt(query)))
+    } catch (e) {
+      return false
+    }
+  }
 
   return (
     <Container>
-
       <Searchbar>
         <label className="dropdown">
           <div className="dd-button">{filters[filter]} </div>
@@ -60,6 +62,7 @@ function Search({ loading = true, onChange = () => {} }) {
         </label>
 
         <input
+          onSubmit={(e) => e.preventDefault()}
           onChange={handleTextChange}
           placeholder={placeholders[filter]}
           value={query}
@@ -68,7 +71,7 @@ function Search({ loading = true, onChange = () => {} }) {
         {loading ? (
           <Loader />
         ) : (
-          <button>
+          <button onClick={()=>{}}>
             <FiSearch className="icon" size={18} color={"#dd4250"} />
           </button>
         )}

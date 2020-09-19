@@ -35,6 +35,7 @@ function ComicsGallery({
       if (query.length >= 3) {
         setLoading(true);
         const response = await new ComicsService().getComicResourceByStartWithTitle(
+          queryIsId,
           query,
           index * limit,
           limit
@@ -47,6 +48,8 @@ function ComicsGallery({
         setTotal(total);
         setResults(results);
         setLoading(false);
+
+        if (queryIsId && results.length == 1) handleSelect(results[0]);
       }
     };
     fetch();
@@ -79,7 +82,9 @@ function ComicsGallery({
       <ComicRow>
         {query && (
           <PaginatorInfo side="flex-start">
-            { query.length < 3 ? `Ops... type minimun 3 characters for a searching` : total == 0 && query.length >= 3
+            {query.length < 3
+              ? `Ops... type minimun 3 characters for a searching`
+              : total == 0 && query.length >= 3
               ? `Ops... ${total} result found for \"${query}\"`
               : `All comics for \"${query}\" in ${total} results`}
           </PaginatorInfo>
@@ -97,12 +102,11 @@ function ComicsGallery({
         )}
       </ComicRow>
       <ComicRow>
-        {query &&
-          !(total == 0 && query) && (
-            <PaginatorInfo side="flex-end">
-              {index + 1} / {Math.ceil(total / limit)}
-            </PaginatorInfo>
-          )}
+        {query && !(total == 0 && query) && (
+          <PaginatorInfo side="flex-end">
+            {index + 1} / {Math.ceil(total / limit)}
+          </PaginatorInfo>
+        )}
       </ComicRow>
     </ComicCol>
   );
