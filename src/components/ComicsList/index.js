@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { ComicRow, ComicCover } from "./styles";
+import { ComicRow, ComicCover, ComicCol, ComicActionButton } from "./styles";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 
 function ComicsList({ list }) {
@@ -38,7 +38,7 @@ function ComicsList({ list }) {
 
 export function MainComicsList({ list, size = 10 }) {
   return (
-    <ComicRow>
+    <ComicCol>
       <ComicRow>
         {Array(size)
           .fill(1)
@@ -46,13 +46,13 @@ export function MainComicsList({ list, size = 10 }) {
             <Link to="">
               <ComicCover
                 style={{ marginLeft: 8, marginRight: 0 }}
-                src="http://x.annihil.us/u/prod/marvel/i/mg/3/40/4bb4680432f73/portrait_medium.jpg"
+                src="http://i.annihil.us/u/prod/marvel/i/mg/3/50/526548a343e4b/portrait_medium.jpg"
                 alt="spider-man cover"
               />
             </Link>
           ))}
       </ComicRow>
-    </ComicRow>
+    </ComicCol>
   );
 }
 
@@ -65,6 +65,18 @@ export function ItemComicsList(comic) {
         alt={comic?.title}
       />
     </Link>
+  );
+}
+
+export function LoadButton({ onClick = () => {}, next }) {
+  return (
+    <ComicCol>
+      <ComicRow>
+        <ComicActionButton onClick={()=>onClick(next)}>
+          {next ? <FiChevronRight size={48} /> : <FiChevronLeft size={48} />}
+        </ComicActionButton>
+      </ComicRow>
+    </ComicCol>
   );
 }
 
