@@ -14,9 +14,12 @@ export const Searchbar = styled.form`
   input {
     border: none;
     outline: 0;
-    margin-left: 5px;
     width: 100%;
     font-size: 18px;
+    margin-left: 12px;
+    font-style: italic;
+    font-weight: 700;
+    line-height: 22px;
   }
 
   button {
@@ -54,23 +57,30 @@ export const Searchbar = styled.form`
     background-color: #ffffff;
     cursor: pointer;
     white-space: nowrap;
-    color: #000;
-    font-size: 14px;
-    font-weight: 300;
+    color: #0e2c48;
+    font-size: 15px;
+    font-weight: 600;
     width: 90px;
+    font-style: italic;
   }
 
-  .dd-button:after {
-    content: "";
+  .dd-button-after {
+    /* content: ""; */
     position: absolute;
     top: 50%;
     right: 15px;
     transform: translateY(-50%);
-    width: 0;
-    height: 0;
-    border-left: 5px solid transparent;
-    border-right: 5px solid transparent;
-    border-top: 5px solid black;
+    width: 15px;
+    height: 23px;
+    /* border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 6px solid #0e2c48; */
+    transition: 0.3s;
+  }
+
+  .dd-button:hover:after {
+    transform: scale(1.05);
+    top: 42%;
   }
 
   .dd-button:hover {
