@@ -29,7 +29,9 @@ const GlobalStyle = createGlobalStyle`
   }
 
   input {
-    color: #000;
+    color: ${({ color }) => color || "#0e2c48"} !important;
+    margin-left: 15px;
+    font-style: italic;
   }
 
   .icon{
