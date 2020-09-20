@@ -29,12 +29,14 @@ function Search({ loading = true, onChange = () => {} }) {
       console.log({ query: debouncedSearchTerm, filter, queryIsId: verifyQueryIsId(debouncedSearchTerm) });
       onChange({ query: debouncedSearchTerm, filter, queryIsId: verifyQueryIsId(debouncedSearchTerm) });
     }
-  }, [debouncedSearchTerm]);
+  }, [debouncedSearchTerm, filter]);
 
   const handleTextChange = ({ target: { value } }) => {
     setQuery(value);
     setQueryIsId(verifyQueryIsId(value))
   };
+
+  
 
   const verifyQueryIsId = (query) => {
     try {
