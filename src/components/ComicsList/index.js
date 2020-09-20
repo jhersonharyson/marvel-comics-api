@@ -9,6 +9,7 @@ import {
 } from "./styles";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 
+
 function ComicsList({ list }) {
   return (
     <ComicRow>
@@ -62,9 +63,9 @@ export function MainComicsList({ list, size = 10 }) {
   );
 }
 
-export function ItemComicsList(comic, callbak = () => {}) {
+export function ItemComicsList(comic, callback = () => {}) {
   return (
-    <div key={comic?.id} onClick={() => callbak(comic)}>
+    <div key={comic?.id} onClick={()=>callback(comic)}>
       <ComicCover
         style={{ marginLeft: 8, marginRight: 0 }}
         src={`${comic?.thumbnail?.path}/portrait_medium.jpg`}
