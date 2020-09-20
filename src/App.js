@@ -13,8 +13,6 @@ import { Theme as theme } from "./models/HerosModel";
 import CharacterService from "./services/CharacterService";
 import ComicsService from "./services/ComicsService";
 
-
-
 function App() {
   const [currentTheme, setCurrentTheme] = useState(theme["SPIDER_MAN"]);
   const [comics, setComics] = useState([]);
@@ -25,16 +23,15 @@ function App() {
       const character = await new CharacterService().getCharacterDescription(
         currentTheme.characterId
       );
-      setHero(character)
+      setHero(character);
       setComics([]);
-      Promise.all(
-        character.comics?.map(({ resourceURI }) =>
-          new ComicsService().getComicByResourceUrl(resourceURI)
-        )
-      ).then((comics) => {
-        setComics([]);
-        setComics(comics);
-      });
+
+      const comics = await new CharacterService().getComicsResourceByCharcterId(
+        currentTheme.characterId,
+        0,
+        30
+      );
+      setComics(comics.results);
     };
     getHeroInfo();
   }, [currentTheme]);
