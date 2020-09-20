@@ -5,9 +5,9 @@ export const ComicCover = styled.div`
     border-radius: 3px;
     transition: transform .2s;
     margin: 0 10px;
-    margin-top: 36px;
+    margin-top: 34px;
 
     &:hover {
-        transform: scale(1.15) ;
+        transform: scale(1.15) rotate(-2deg);
     }
 `;
