@@ -1,35 +1,65 @@
-import React, { useState } from "react";
-import {
-  Container,
-  Box,
-  Flex,
-  TitleBar,
-  ComicTitle,
-  InformationBox,
-  Title,
-  SearchContainerField,
-} from "./styles";
-
-import { FiArrowLeft } from "react-icons/fi";
-import { Link } from "react-router-dom";
-import Header from "../../components/Header";
-import ComicsList, { MainComicsList } from "../../components/ComicsList";
-import Search from "../../components/Search";
+import React, { useState, useEffect } from "react";
 import ComicsGallery from "../../components/ComicsGallery";
+import Header from "../../components/Header";
 import MainComicsDetail from "../../components/MainComicsDetail";
+import Search from "../../components/Search";
+import ViewModel from "../../models/ViewModel";
+import { SearchContainerField } from "./styles";
 
 function Comics() {
+  const [initilize, setInitialize] = useState({});
+  const [selected, setSelected] = useState({});
+  const [loading, setLoading] = useState(false);
   const [query, setQuery] = useState({
     query: "",
     filter: "",
     queryIsId: false,
   });
-  const [selected, setSelected] = useState({});
-  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const comicId = getComicIdByQueryUrl(getUrlParams());
+    const characterId = getCharacterIdByQueryUrl(getUrlParams());
+    setSearchInitialize(comicId, characterId);
+  }, []);
+
+  const getUrlParams = () => {
+    const params = decodeURI(window.location.search)
+      ?.replace("?", "")
+      ?.split("&")
+      ?.map((query) => ({ [query.split("=")[0]]: query.split("=")[1] }))
+      ?.reduce((acc, query) => {
+        acc = {
+          ...acc,
+          ...query,
+        };
+        return acc;
+      }, {});
+
+    return params;
+  };
+
+  const getComicIdByQueryUrl = (query) => query["comicId"];
+
+  const getCharacterIdByQueryUrl = (query) => query["characterId"];
+
+  const setSearchInitialize = (comic, character) => {
+    let query;
+    let filter;
+
+    if (!!comic) {
+      query = comic;
+      filter = ViewModel.COMICS;
+    } else if (!!character) {
+      query = character;
+      filter = ViewModel.CHARACTER;
+    }
+    setInitialize({ query, filter });
+    !!query && setLoading(true);
+  };
 
   const onSerachChange = (query) => {
     setQuery(query);
-    setLoading(query.length >= 3 ? true : false);
+    setLoading(`${query}`.length >= 3 ? true : false);
   };
 
   const onSearchEnd = () => {
@@ -52,7 +82,11 @@ function Comics() {
     <>
       <Header />
       <SearchContainerField>
-        <Search onChange={onSerachChange} loading={loading} />
+        <Search
+          onChange={onSerachChange}
+          loading={loading}
+          initilize={initilize}
+        />
         <ComicsGallery
           {...query}
           handleSelect={handleSelect}
@@ -60,7 +94,9 @@ function Comics() {
         />
       </SearchContainerField>
       {/* {JSON.stringify(selected)} */}
-      {!!selected.id && <MainComicsDetail comic={selected} handleSelect={handleSelect}/>}
+      {!!selected.id && (
+        <MainComicsDetail comic={selected} handleSelect={handleSelect} />
+      )}
     </>
   );
 }
