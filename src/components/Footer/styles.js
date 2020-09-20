@@ -1,5 +1,12 @@
 import styled, {keyframes} from "styled-components";
 
+export const Container = styled.div`
+  overflow-x: visible;
+  a {
+    text-decoration: none;
+  }
+`;
+
 export const ActionLabel = styled.div`
   padding-left: 50px;
   margin-bottom: 16px;
