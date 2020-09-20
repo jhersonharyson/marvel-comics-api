@@ -65,6 +65,7 @@ function Search({ loading = true, onChange = () => {}, initilize = {} }) {
         </label>
 
         <input
+          data-testid="search-searchbar-input"
           onSubmit={(e) => e.preventDefault()}
           onChange={handleTextChange}
           placeholder={placeholders[filter]}
