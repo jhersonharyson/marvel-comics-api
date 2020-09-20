@@ -19,7 +19,7 @@ export function MiniCharacterList({ list, style = {} }) {
   
   return (
     <ComicRow style={style}>
-      <Button onClick={() => setIndex(index === 0 ? list.length - 1 : index - 1)} >
+      <Button data-testid="character-list-prev" onClick={() => setIndex(index === 0 ? list.length - 1 : index - 1)} >
         <FiChevronLeft size={24} />
       </Button>
       <ComicRow>
@@ -27,7 +27,7 @@ export function MiniCharacterList({ list, style = {} }) {
         <ComicCover src={list[getInfinitIndex(1)]} alt="2" onLoad={()=>handLoaded(1)} className={loaded[1]} active />
         <ComicCover src={list[getInfinitIndex(2)]} alt="3" onLoad={()=>handLoaded(2)} className={loaded[2]} />
       </ComicRow>
-      <Button onClick={() => setIndex(index >= 2 ? 0 : index + 1)}>
+      <Button data-testid="character-list-next" onClick={() => setIndex(index >= 2 ? 0 : index + 1)}>
         <FiChevronRight size={24} />
       </Button>
     </ComicRow>
