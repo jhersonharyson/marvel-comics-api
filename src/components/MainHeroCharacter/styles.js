@@ -15,9 +15,9 @@ export const LabelContainer = styled.div`
   margin-top: 4px;
 `;
 export const MiniCharacterListContainer = styled.div`
-  display: flex; 
+  display: flex;
   justify-content: center;
- 
+
   margin-top: 12px;
   margin-bottom: 16px;
 `;
@@ -85,7 +85,9 @@ export const Searchbar = styled.input`
 `;
 
 export const Col = styled.div`
- 
+  a {
+    text-decoration: none;
+  }
 `;
 
 export const ActionLabel = styled.div`
@@ -95,7 +97,7 @@ export const ActionLabel = styled.div`
   align-items: center;
   cursor: pointer;
   transition: 0.3s;
-  &:hover{
-      font-size: 20px;
+  &:hover {
+    font-size: 20px;
   }
 `;
