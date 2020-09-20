@@ -5,9 +5,9 @@ import { Link } from "react-router-dom";
 
 import { HeaderBar, Logo, Navbar, Searchbar, Col, ComicsLabel } from "./styles";
 
-function Header() {
+function Header({comicRouter}) {
   const [query, setQuery] = useState("");
-  const comicsRouter = window.location.pathname.startsWith("/comics");
+  const comicsRouter = comicRouter || window.location.pathname.startsWith("/comics");
 
   const handleSubmmit = (e) => {
     e.preventDefault();
@@ -15,7 +15,7 @@ function Header() {
   };
 
   const handleSelected = (comic) => {
-    return (window.location.href = `/comics?comicId=${comic}`);
+    return (window.location.assign(`/comics?comicId=${comic}`));
   };
 
   return (
@@ -31,23 +31,22 @@ function Header() {
           </li>
         </Navbar>
         {!comicsRouter && (
-          <form onSubmit={handleSubmmit}>
-            <Searchbar>
-              <input
-                onChange={({ target }) => setQuery(target.value)}
-                value={query}
-                type="text"
-                autoComplete="off"
-                spellCheck={false}
-              />
-              <button type="submit">
-                <FiSearch className="icon" size={18} color={"#dd4250"} />
-              </button>
-            </Searchbar>
-          </form>
+          <Searchbar data-testid="header-search-form" onSubmit={handleSubmmit}>
+            <input
+              data-testid="header-search-input"
+              onChange={({ target }) => setQuery(target.value)}
+              value={query}
+              type="text"
+              autoComplete="off"
+              spellCheck={false}
+            />
+            <button data-testid="header-search-button" type="submit">
+              <FiSearch className="icon" size={18} color={"#dd4250"} />
+            </button>
+          </Searchbar>
         )}
       </Col>
-      <Col>{comicsRouter && <ComicsLabel>Comics</ComicsLabel>}</Col>
+      <Col>{comicsRouter && <ComicsLabel data-testid="header-comics-label">Comics</ComicsLabel>}</Col>
     </HeaderBar>
   );
 }

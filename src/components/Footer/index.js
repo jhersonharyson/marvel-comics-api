@@ -11,7 +11,7 @@ import { ActionLabel, CarouselContainer, Container } from "./styles";
 function Footer() {
   const store = useContext(Store);
   const handleSelected = (comic) => {
-    return window.location.href = `/comics?comicId=${comic.id}`
+    return window.location.assign(`/comics?comicId=${comic.id}`)
   }
   return (
     <Container>
