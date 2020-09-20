@@ -93,7 +93,6 @@ function Comics() {
           onSearchEnd={onSearchEnd}
         />
       </SearchContainerField>
-      {/* {JSON.stringify(selected)} */}
       {!!selected.id && (
         <MainComicsDetail comic={selected} handleSelect={handleSelect} />
       )}

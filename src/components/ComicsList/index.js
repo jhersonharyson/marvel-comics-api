@@ -1,75 +1,28 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import {
-  ComicRow,
-  ComicCover,
-  ComicCol,
-  ComicActionButton,
-  Button,
-} from "./styles";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
+import {
+  Button,
+  ComicActionButton,
+  ComicCol,
+  ComicCover,
+  ComicRow
+} from "./styles";
 
+export function ItemComicsList({ comic, callback = () => {} }) {
+  const [loaded, setLoaded] = useState("");
 
-function ComicsList({ list }) {
+  const handleImageLoaded = () => {
+    setLoaded("fadeIn");
+  };
+
   return (
-    <ComicRow>
-      <FiChevronLeft size={48} />
-
-      <ComicRow>
-        <Link to="">
-          <ComicCover
-            src="http://x.annihil.us/u/prod/marvel/i/mg/3/40/4bb4680432f73/portrait_medium.jpg"
-            alt="spider-man cover"
-          />
-        </Link>
-
-        <Link to="">
-          <ComicCover
-            src="http://x.annihil.us/u/prod/marvel/i/mg/3/40/4bb4680432f73/portrait_xlarge.jpg"
-            alt="spider-man cover"
-          />
-        </Link>
-
-        <Link to="">
-          <ComicCover
-            src="http://x.annihil.us/u/prod/marvel/i/mg/3/40/4bb4680432f73/portrait_medium.jpg"
-            alt="spider-man cover"
-          />
-        </Link>
-      </ComicRow>
-
-      <FiChevronRight size={48} />
-    </ComicRow>
-  );
-}
-
-export function MainComicsList({ list, size = 10 }) {
-  return (
-    <ComicCol>
-      <ComicRow>
-        {Array(size)
-          .fill(1)
-          .map(() => (
-            <Link to="">
-              <ComicCover
-                style={{ marginLeft: 8, marginRight: 0 }}
-                src="http://i.annihil.us/u/prod/marvel/i/mg/3/50/526548a343e4b/portrait_medium.jpg"
-                alt="spider-man cover"
-              />
-            </Link>
-          ))}
-      </ComicRow>
-    </ComicCol>
-  );
-}
-
-export function ItemComicsList(comic, callback = () => {}) {
-  return (
-    <div key={comic?.id} onClick={()=>callback(comic)}>
+    <div key={comic?.id} onClick={() => callback(comic)}>
       <ComicCover
-        style={{ marginLeft: 8, marginRight: 0 }}
+        className={loaded}
+        style={{ marginLeft: 8, marginRight: 0, width: 100 }}
         src={`${comic?.thumbnail?.path}/portrait_medium.jpg`}
         alt={comic?.title}
+        onLoad={handleImageLoaded}
       />
     </div>
   );
@@ -90,6 +43,7 @@ export function LoadButton({ onClick = () => {}, next }) {
 export function MiniComicsList({ list, style = {} }) {
   const [index, setIndex] = useState(list.length - 1);
   const [items, setItems] = useState([]);
+  const [loaded, setLoaded] = useState({});
 
   useEffect(() => {
     setItems(list.map(({ path }) => path));
@@ -101,6 +55,10 @@ export function MiniComicsList({ list, style = {} }) {
       : index + i >= list.length
       ? index + i - list.length
       : index + i;
+
+  const handleImageLoaded = (index) => {
+    setLoaded({...loaded, [index]: "fadeIn"});
+  };
 
   if (!list.length) return null;
 
@@ -119,6 +77,8 @@ export function MiniComicsList({ list, style = {} }) {
           <ComicCover
             src={`${items[getInfinitIndex(0)]}/portrait_medium.jpg`}
             alt="1"
+            className={loaded[0]}
+            onLoad={()=>handleImageLoaded(0)}
           />
         )}
 
@@ -126,6 +86,8 @@ export function MiniComicsList({ list, style = {} }) {
           <ComicCover
             src={`${items[getInfinitIndex(1)]}/portrait_xlarge.jpg`}
             alt="2"
+            className={loaded[1]}
+            onLoad={()=>handleImageLoaded(1)}
             active
           />
         )}
@@ -134,6 +96,8 @@ export function MiniComicsList({ list, style = {} }) {
           <ComicCover
             src={`${items[getInfinitIndex(2)]}/portrait_medium.jpg`}
             alt="3"
+            className={loaded[3]}
+            onLoad={()=>handleImageLoaded(2)}
           />
         )}
       </ComicRow>
@@ -147,4 +111,4 @@ export function MiniComicsList({ list, style = {} }) {
   );
 }
 
-export default ComicsList;
+export default ItemComicsList;

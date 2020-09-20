@@ -65,16 +65,12 @@ export const Searchbar = styled.form`
   }
 
   .dd-button-after {
-    /* content: ""; */
     position: absolute;
     top: 50%;
     right: 15px;
     transform: translateY(-50%);
     width: 15px;
     height: 23px;
-    /* border-left: 6px solid transparent;
-    border-right: 6px solid transparent;
-    border-top: 6px solid #0e2c48; */
     transition: 0.3s;
   }
 

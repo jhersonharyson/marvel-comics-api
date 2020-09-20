@@ -1,10 +1,8 @@
-import React, { useState, useEffect } from "react";
-import { Theme } from "../../models/HerosModel";
-import ViewModel from "../../models/ViewModel";
+import React, { useEffect, useState } from "react";
 import CharacterService from "../../services/CharacterService";
 import ComicsService from "../../services/ComicsService";
 import ComicsCarousel from "../ComicsCarousel";
-import { LoadButton, MainComicsList, ItemComicsList } from "../ComicsList";
+import { ItemComicsList, LoadButton } from "../ComicsList";
 import Loader from "../Loader";
 import { ComicCol, ComicRow, PaginatorInfo } from "./styles";
 
@@ -101,13 +99,13 @@ function CharacterComicsGallery({
           </PaginatorInfo>
         )}
       </ComicRow>
-      <ComicRow style={{ minHeight: "200px" }}>
+      <ComicRow style={{ minHeight: "200px", paddingTop: "15px" }}>
         {loading ? (
           <Loader />
         ) : (
           <ComicsCarousel
             items={buildGallery(
-              results.map((result) => ItemComicsList(result, handleSelect))
+              results.map((result) => <ItemComicsList comic={result} callback={handleSelect} />)
             )}
           />
         )}

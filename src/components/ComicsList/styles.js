@@ -18,11 +18,16 @@ export const ComicCover = styled.img.attrs(() => ({
 }))`
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
   border-radius: 3px;
-  transition: transform 0.2s;
+  transition: transform 0.2s, opacity 0.6s;
   margin: 0 10px;
+  opacity: 0;
 
   &:hover {
     transform: scale(1.15);
+  }
+
+  &.fadeIn {
+    opacity: 1;
   }
 `;
 

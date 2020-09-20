@@ -7,7 +7,6 @@ function FooterCarousel({ items = [] }) {
   const flickityOptions = {
     initialIndex: 0,
     cellAlign: "left",
-    // freeScroll: true,
     draggable: false,
     autoPlay: 4000,
     prevNextButtons: true,
@@ -15,7 +14,6 @@ function FooterCarousel({ items = [] }) {
     selectedAttraction: 0.01,
     contain: true,
     groupCells: 3,
-    // wrapAround: true,
     imagesLoaded: false,
   };
   return (

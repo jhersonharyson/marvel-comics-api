@@ -11,15 +11,13 @@ export const Load = styled.div`
   border-radius: 40px;
   width: 25px;
   height: 25px;
-  animation: ${spin} .4s linear infinite;
+  animation: ${spin} 0.4s linear infinite;
 `;
 
 export const Container = styled.div`
- 
   min-width: 30px;
   min-height: 30px;
   display: flex;
   justify-content: center;
-  align-items: center; 
-
+  align-items: center;
 `;

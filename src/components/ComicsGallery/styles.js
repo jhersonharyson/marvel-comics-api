@@ -1,19 +1,9 @@
 import styled, { keyframes } from "styled-components";
 
 export const ComicRow = styled.div`
-  /* display: flex;
-    flex: 1;
 
-    align-items: center;
-    width: 100%; */
 `;
 
-export const PaginatorButton = styled.div`
-  cursor: pointer;
-  &:hover {
-    transform: scale(1.15);
-  }
-`;
 
 export const PaginatorInfo = styled.em`
   display: flex;
@@ -21,6 +11,8 @@ export const PaginatorInfo = styled.em`
   width: 100%;
   margin-top: 5px;
   margin-bottom: 15px;
+  font-weight: 700;
+
 `;
 
 const fadeInSlide = keyframes`

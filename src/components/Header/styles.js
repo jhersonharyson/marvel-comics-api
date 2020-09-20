@@ -74,10 +74,10 @@ export const Searchbar = styled.form`
     width: 400px;
   }
   &:focus-within .help {
-    display: block
+    display: block;
   }
   .help {
-    display: none
+    display: none;
   }
 
   input {
@@ -88,7 +88,7 @@ export const Searchbar = styled.form`
     font-size: 15px;
     font-weight: 700;
     line-height: 22px;
-    width: 100%
+    width: 100%;
   }
 
   button {

@@ -23,8 +23,8 @@ const GlobalStyle = createGlobalStyle`
 
   body {
     background-color: ${({ color }) =>
-      color || "#030303"};/* #beb571; /* #030303; /* #0e2c48;*/
-    scrollbar-width: thin;          /* "auto" or "thin"  */
+      color || "#030303"};  /* #beb571; /* #030303; /* #0e2c48;*/
+    scrollbar-width: thin; 
     scrollbar-color: blue orange;
   }
 
@@ -69,9 +69,7 @@ const GlobalStyle = createGlobalStyle`
 
 
 
-  /*! Flickity v2.1.2
-https://flickity.metafizzy.co
----------------------------------------------- */
+/*! Flickity v2.1.2 */
 
 .flickity-enabled {
   position: relative;

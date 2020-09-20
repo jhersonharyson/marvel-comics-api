@@ -108,13 +108,13 @@ function ComicsGallery({
           </PaginatorInfo>
         )}
       </ComicRow>
-      <ComicRow style={{ minHeight: "200px" }}>
+      <ComicRow style={{ minHeight: "200px", paddingTop: "15px" }}>
         {loading ? (
           <Loader />
         ) : (
           <ComicsCarousel
             items={buildGallery(
-              results.map((result) => ItemComicsList(result, handleSelect))
+              results.map((result) => <ItemComicsList comic={result} callback={handleSelect} />)
             )}
           />
         )}
