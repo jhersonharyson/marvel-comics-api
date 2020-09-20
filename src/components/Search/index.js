@@ -7,7 +7,6 @@ import { Container, Searchbar } from "./styles";
 
 function Search({ loading = true, onChange = () => {}, initilize = {} }) {
   const [query, setQuery] = useState(initilize.query || "");
-  const [queryIsId, setQueryIsId] = useState(!!initilize.query || false);
   const [filter, setFilter] = useState(initilize.query || ViewModel.COMICS);
 
   const filters = { COMICS: "Comics", SUPER_HEROS: "Super Heros" };
@@ -18,8 +17,8 @@ function Search({ loading = true, onChange = () => {}, initilize = {} }) {
   useEffect(() => {
     setQuery(initilize.query || "");
     setFilter(initilize.filter || ViewModel.COMICS);
-    setQueryIsId(!!initilize.query || false);
     return clearTimeout(timer);
+    // eslint-disable-next-line
   }, [initilize]);
 
   const debouncedSearchTerm = useDebounce(query, 1000);
@@ -33,11 +32,11 @@ function Search({ loading = true, onChange = () => {}, initilize = {} }) {
         queryIsId: verifyQueryIsId(debouncedSearchTerm),
       });
     }
+    // eslint-disable-next-line
   }, [debouncedSearchTerm, filter]);
 
   const handleTextChange = ({ target: { value } }) => {
     setQuery(value);
-    setQueryIsId(verifyQueryIsId(value));
   };
 
   const verifyQueryIsId = (query) => {
@@ -52,7 +51,7 @@ function Search({ loading = true, onChange = () => {}, initilize = {} }) {
     <Container>
       <Searchbar>
         <label className="dropdown">
-          <div className="dd-button">{filters[filter]} </div> <div className="dd-button-after">  <FiChevronDown className="icon" size={24} color={"#dd4250"} /> </div>
+          <div className="dd-button">{filters[filter]} </div> <div className="dd-button-after"> <FiChevronDown className="icon" size={24} color={"#dd4250"} /> </div>
           <input type="checkbox" className="dd-input" id="test" />
           <ul className="dd-menu">
             <li onClick={() => setFilter("COMICS")}>

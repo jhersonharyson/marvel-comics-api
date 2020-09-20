@@ -11,7 +11,7 @@ import { StoreProvider } from "./context/provider";
 import { Theme as theme } from "./models/HerosModel";
 
 import CharacterService from "./services/CharacterService";
-import ComicsService from "./services/ComicsService";
+
 
 function App() {
   const [currentTheme, setCurrentTheme] = useState(theme["SPIDER_MAN"]);

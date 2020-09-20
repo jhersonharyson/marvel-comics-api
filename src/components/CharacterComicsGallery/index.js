@@ -43,7 +43,7 @@ function CharacterComicsGallery({
             limit
           );
 
-      const { offset = 0, results = [], total = 0, count } = response;
+      const { results = [], total = 0 } = response;
 
       if (isSubscribed) {
         onSearchEnd();
@@ -56,6 +56,7 @@ function CharacterComicsGallery({
     fetch();
 
     return () => (isSubscribed = false);
+    // eslint-disable-next-line
   }, [index]);
 
   const handleChange = (isNext) => {
