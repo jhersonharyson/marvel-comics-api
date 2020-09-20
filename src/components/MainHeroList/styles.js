@@ -50,7 +50,7 @@ export const CharacterLabel = styled.div`
     transform: scale(1.15);
   }
 
-  ${({active})=>active ? 'transform: scale(1.1);' : ''}
+  ${({ active }) => (active ? "transform: scale(1.1);" : "")}
 `;
 
 export const Logo = styled.img.attrs({
@@ -81,6 +81,4 @@ export const Searchbar = styled.input`
   outline: 0;
 `;
 
-export const Col = styled.div`
- 
-`;
+export const Col = styled.div``;

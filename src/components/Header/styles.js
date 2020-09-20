@@ -1,4 +1,4 @@
-import styled, {keyframes} from "styled-components";
+import styled, { keyframes } from "styled-components";
 import logo from "../../assets/images/logo.png";
 
 const fadeInSlideLeft = keyframes`
@@ -10,8 +10,7 @@ const fadeInSlideLeft = keyframes`
     opacity: 1;
     margin-left: 0px;
   }
-`
-
+`;
 
 export const HeaderBar = styled.div`
   width: 100%;
@@ -21,7 +20,7 @@ export const HeaderBar = styled.div`
   justify-content: space-between;
   padding: 30px 50px 40px 50px;
 
-  box-sizing: border-box ;
+  box-sizing: border-box;
   animation: ${fadeInSlideLeft} 1.2s forwards;
 `;
 
@@ -57,7 +56,6 @@ export const Searchbar = styled.form`
   margin-left: 35px;
   width: 300px;
 
-
   input {
     border: none;
     outline: 0;
@@ -73,7 +71,6 @@ export const Searchbar = styled.form`
   }
 `;
 
-
 const fadeInSlide = keyframes`
   from{
     opacity: 0;
@@ -83,7 +80,7 @@ const fadeInSlide = keyframes`
     opacity: 1;
     margin-top: 0px;
   }
-`
+`;
 
 export const ComicsLabel = styled.em`
   font-size: 56px;
