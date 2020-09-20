@@ -39,14 +39,13 @@ function Comics() {
   const handleSelect = (selected) => {
     setSelected(selected);
 
-    setTimeout(
-      () =>
-        document.querySelector("#result").scrollIntoView({
+    setTimeout(() => {
+      const result = document.querySelector("#result");
+      !!result &&
+        result.scrollIntoView({
           behavior: "smooth",
-        }),
-      200
-    );
-    
+        });
+    }, 200);
   };
 
   return (
@@ -61,7 +60,7 @@ function Comics() {
         />
       </SearchContainerField>
       {/* {JSON.stringify(selected)} */}
-      {selected.title && <MainComicsDetail comic={selected} />}
+      {!!selected.id && <MainComicsDetail comic={selected} handleSelect={handleSelect}/>}
     </>
   );
 }
