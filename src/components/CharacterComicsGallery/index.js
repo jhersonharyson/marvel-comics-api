@@ -34,6 +34,7 @@ function CharacterComicsGallery({
   }, [query]);
 
   useEffect(() => {
+    let isSubscribed = true;
     const fetch = async () => {
       setLoading(true);
 
@@ -50,15 +51,22 @@ function CharacterComicsGallery({
           );
 
       console.log(response);
+
       const { offset = 0, results = [], total = 0, count } = response;
-      onSearchEnd();
-      setOffset(offset);
-      setCount(count);
-      setTotal(total);
-      setResults(results);
-      setLoading(false);
+
+      if (isSubscribed) {
+        onSearchEnd();
+        setOffset(offset);
+        setCount(count);
+        setTotal(total);
+        setResults(results);
+        setLoading(false);
+      }
     };
+
     fetch();
+
+    return () => (isSubscribed = false);
   }, [index]);
 
   const handleChange = (isNext) => {
@@ -89,7 +97,9 @@ function CharacterComicsGallery({
       <ComicRow>
         {query && results.length > 0 && (
           <PaginatorInfo side="flex-start">
-            {isComic ? `${total} character appears in this comic` : `All ${total} comics this character appears`}
+            {isComic
+              ? `${total} character appears in this comic`
+              : `All ${total} comics this character appears`}
           </PaginatorInfo>
         )}
       </ComicRow>

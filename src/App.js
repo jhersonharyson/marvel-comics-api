@@ -19,21 +19,29 @@ function App() {
   const [hero, setHero] = useState({});
 
   useEffect(() => {
+    let isSubscribed = true;
+
     const getHeroInfo = async () => {
       const character = await new CharacterService().getCharacterDescription(
         currentTheme.characterId
       );
-      setHero(character);
-      setComics([]);
 
       const comics = await new CharacterService().getComicsResourceByCharcterId(
         currentTheme.characterId,
         0,
         30
       );
-      setComics(comics.results);
+
+      if (isSubscribed) {
+        setHero(character);
+        setComics([]);
+        setComics(comics.results);
+      }
     };
+
     getHeroInfo();
+
+    return () => (isSubscribed = false);
   }, [currentTheme]);
 
   const dispatch = (newTheme) => {
