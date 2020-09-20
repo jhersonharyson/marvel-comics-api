@@ -50,8 +50,6 @@ function CharacterComicsGallery({
             limit
           );
 
-      console.log(response);
-
       const { offset = 0, results = [], total = 0, count } = response;
 
       if (isSubscribed) {

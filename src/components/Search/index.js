@@ -11,10 +11,7 @@ function Search({ loading = true, onChange = () => {}, initilize = {} }) {
   const [filter, setFilter] = useState(initilize.query || ViewModel.COMICS);
 
   const filters = { COMICS: "Comics", SUPER_HEROS: "Super Heros" };
-  const placeholders = {
-    COMICS: "Type a HQ's title or id...",
-    SUPER_HEROS: "Type Super Hero name or id...",
-  };
+  const placeholders = { COMICS: "Type a HQ's title or id...", SUPER_HEROS: "Type Super Hero name or id..." };
 
   let timer;
 
@@ -30,11 +27,6 @@ function Search({ loading = true, onChange = () => {}, initilize = {} }) {
   useEffect(() => {
     if (debouncedSearchTerm) {
       // Fire off our API call
-      console.log({
-        query: debouncedSearchTerm,
-        filter,
-        queryIsId: verifyQueryIsId(debouncedSearchTerm),
-      });
       onChange({
         query: debouncedSearchTerm,
         filter,

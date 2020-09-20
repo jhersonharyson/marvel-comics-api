@@ -36,22 +36,11 @@ export default class ComicsService {
       const response = isComicId
         ? await this.getComicByComicId(title)
         : await this.getComicByStartWithTitle(title, _offset, _limit);
-      console.log(response);
+
       const { offset, limit, total, count } = response.data.data;
       const list = response.data.data.results;
       let listOfComics = list.map(
-        ({
-          id,
-          description = "",
-          images,
-          thumbnail,
-          creators,
-          characters,
-          dates,
-          pageCount,
-          title,
-          urls = {},
-        }) => {
+        ({ id, description = "", images, thumbnail, creators, characters, dates, pageCount, title, urls = {} }) => {
           return {
             id,
             images,
@@ -81,7 +70,7 @@ export default class ComicsService {
   async getComicByResourceUrl(resourceUrl) {
     try {
       const response = await this.getComicByUrl(resourceUrl);
-      console.log(response);
+   
       const {
         description = "",
         images,
@@ -117,23 +106,11 @@ export default class ComicsService {
   async getCharactersResourceByComicId(comicId) {
     try {
       const response = await this.getCharactersByComicId(comicId);
-      console.log(response);
+
       const { offset, limit, total, count } = response.data.data;
       const list = response.data.data.results;
       let listOfComics = list.map(
-        ({
-          id,
-          description = "",
-          images,
-          thumbnail,
-          creators,
-          name,
-          urls = {},
-          stories = {},
-          series = {},
-          comics = {},
-          events = {}
-        }) => {
+        ({ id, description = "", images, thumbnail, creators, name, urls = {}, stories = {}, series = {}, comics = {}, events = {} }) => {
           return {
             id,
             description,

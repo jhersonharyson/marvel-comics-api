@@ -1,4 +1,3 @@
-import HerosModel from "./../models/HerosModel";
 import axios from "./../http";
 
 export default class CharacterService {
@@ -26,12 +25,13 @@ export default class CharacterService {
   async getCharacterDescription(characterId) {
     try {
       const response = await this.getCharacter(characterId);
-      console.log(response);
+
       const {
         name = "",
         description = "",
         comics,
       } = response.data.data.results[0];
+
       return { name, description, comics: comics.items };
     } catch (e) {}
   }
@@ -46,23 +46,13 @@ export default class CharacterService {
       const response = isCharacterId
         ? await this.getCharacter(_name)
         : await this.getCharacterByNameStartsWith(_name, _offset, _limit);
-      console.log(response);
+
       const { offset, limit, total, count } = response.data.data;
       const list = response.data.data.results;
 
       let listOfComics = list.map(
-        ({
-          id,
-          description = "",
-          images,
-          thumbnail,
-          pageCount,
-          name,
-          comics,
-          stories,
-          events,
-          urls,
-        }) => {
+        ({ id, description = "", images, thumbnail, pageCount, name, comics, stories, events, urls }) => {
+
           return {
             id,
             description,
@@ -96,24 +86,11 @@ export default class CharacterService {
         _limit
       );
 
-      console.log(response);
       const { offset, limit, total, count } = response.data.data;
       const list = response.data.data.results;
 
       let listOfComics = list.map(
-        ({
-          id,
-          description = "",
-          images,
-          thumbnail,
-          pageCount,
-          title,
-          stories,
-          events = {},
-          urls,
-          characters,
-          creators,
-        }) => {
+        ({ id, description = "", images, thumbnail, pageCount, title, stories, events = {}, urls, characters, creators }) => {
           return {
             id,
             description,
@@ -129,7 +106,6 @@ export default class CharacterService {
         }
       );
 
-      console.log(listOfComics);
 
       return {
         results: [...listOfComics],
