@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import ViewModel from "../../models/ViewModel";
+import CharacterService from "../../services/CharacterService";
 import ComicsService from "../../services/ComicsService";
 import ComicsCarousel from "../ComicsCarousel";
-import { LoadButton, MainComicsList, ItemComicsList } from "../ComicsList";
+import { ItemComicsList, LoadButton } from "../ComicsList";
 import Loader from "../Loader";
 import { ComicCol, ComicRow, PaginatorInfo } from "./styles";
 
@@ -31,29 +33,40 @@ function ComicsGallery({
   }, [query]);
 
   useEffect(() => {
-    const fetch = async () => {
-      if (query.length >= 3) {
-        setLoading(true);
-        const response = await new ComicsService().getComicResourceByStartWithTitle(
-          queryIsId,
-          query,
-          index * limit,
-          limit
-        );
-        console.log(response);
-        const { offset, results, total, count } = response;
-        onSearchEnd();
-        setOffset(offset);
-        setCount(count);
-        setTotal(total);
-        setResults(results);
-        setLoading(false);
-
-        if (queryIsId && results.length == 1) handleSelect(results[0]);
-      }
-    };
     fetch();
-  }, [index, query]);
+  }, [index, query, filter]);
+
+  const fetch = async () => {
+    if (query.length >= 3) {
+      setLoading(true);
+
+      const response =
+        filter == ViewModel.CHARACTER
+          ? await new CharacterService().getCharacterResourceByNameStartsWith(
+              queryIsId,
+              query,
+              index * limit,
+              limit
+            )
+          : await new ComicsService().getComicResourceByStartWithTitle(
+              queryIsId,
+              query,
+              index * limit,
+              limit
+            );
+
+      console.log(response);
+      const { offset = 0, results = [], total = 0, count } = response || {};
+      onSearchEnd();
+      setOffset(offset);
+      setCount(count);
+      setTotal(total);
+      setResults(results);
+      setLoading(false);
+
+      if (queryIsId && results.length == 1) handleSelect(results[0]);
+    }
+  };
 
   const handleChange = (isNext) => {
     if (isNext) {
