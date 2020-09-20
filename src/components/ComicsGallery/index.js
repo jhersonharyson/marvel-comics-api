@@ -114,7 +114,7 @@ function ComicsGallery({
         ) : (
           <ComicsCarousel
             items={buildGallery(
-              results.map((result) => <ItemComicsList comic={result} callback={handleSelect} />)
+              results.map((result, index) => <ItemComicsList comic={result} callback={handleSelect} key={index}/>)
             )}
           />
         )}

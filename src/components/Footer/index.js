@@ -24,7 +24,7 @@ function Footer() {
       <CarouselContainer>
         {!!store.comics.length && (
           <FooterCarousel
-            items={store?.comics?.map((comic) => <ItemComicsList comic={comic} callback={handleSelected} />)}
+            items={store?.comics?.map((comic, index) => <ItemComicsList comic={comic} callback={handleSelected} key={index}/>)}
           />
         )}
       </CarouselContainer>
