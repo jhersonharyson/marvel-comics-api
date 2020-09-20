@@ -8,7 +8,6 @@ import { ComicCol, ComicRow, PaginatorInfo } from "./styles";
 
 function CharacterComicsGallery({
   query = "",
-  queryIsId = false,
   isComic = false,
   onSearchEnd = () => {},
   handleSelect = () => {},
@@ -16,8 +15,6 @@ function CharacterComicsGallery({
   const [results, setResults] = useState([]);
   const [index, setIndex] = useState(0);
   const [limit, setlimit] = useState(10);
-  const [offset, setOffset] = useState(0);
-  const [count, setCount] = useState(0);
   const [total, setTotal] = useState(0);
   const [loading, setLoading] = useState(false);
 
@@ -25,8 +22,6 @@ function CharacterComicsGallery({
     setResults([]);
     setIndex(0);
     setlimit(10);
-    setOffset(0);
-    setCount(0);
     setTotal(0);
     setLoading(false);
   }, [query]);
@@ -52,8 +47,6 @@ function CharacterComicsGallery({
 
       if (isSubscribed) {
         onSearchEnd();
-        setOffset(offset);
-        setCount(count);
         setTotal(total);
         setResults(results);
         setLoading(false);
@@ -105,13 +98,19 @@ function CharacterComicsGallery({
         ) : (
           <ComicsCarousel
             items={buildGallery(
-              results.map((result, index) => <ItemComicsList comic={result} callback={handleSelect} key={index}/>)
+              results.map((result, index) => (
+                <ItemComicsList
+                  comic={result}
+                  callback={handleSelect}
+                  key={index}
+                />
+              ))
             )}
           />
         )}
       </ComicRow>
       <ComicRow>
-        {query && !(total == 0 && query) && (
+        {query && !(total === 0 && query) && (
           <PaginatorInfo side="flex-end">
             {index + 1} / {Math.ceil(total / limit)}
           </PaginatorInfo>

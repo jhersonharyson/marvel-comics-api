@@ -1,28 +1,23 @@
 import React, { useContext } from "react";
-
 import { FiChevronRight } from "react-icons/fi";
-import { MiniCharacterList } from "../CharacterList";
-
+import { Link } from "react-router-dom";
 import Store from "../../context/provider";
+import { MiniCharacterList } from "../CharacterList";
 import HerosModel, {
-  ActorNames,
   ActorDescription,
   ActorImages,
 } from "./../../models/HerosModel";
-
 import {
-  SideIndicator,
-  LabelContainer,
-  HeroNameLabel,
+  ActionLabel,
   ActorNameLabel,
   CharacterLabel,
+  Col,
   Container,
   ContainerList,
-  Col,
-  ActionLabel,
+  HeroNameLabel,
+  LabelContainer,
   MiniCharacterListContainer,
 } from "./styles";
-import { Link } from "react-router-dom";
 
 function MainHeroCharacter() {
   const theme = useContext(Store);

@@ -17,8 +17,6 @@ function ComicsGallery({
   const [results, setResults] = useState([]);
   const [index, setIndex] = useState(0);
   const [limit, setlimit] = useState(10);
-  const [offset, setOffset] = useState(0);
-  const [count, setCount] = useState(0);
   const [total, setTotal] = useState(0);
   const [loading, setLoading] = useState(false);
 
@@ -26,8 +24,6 @@ function ComicsGallery({
     setResults([]);
     setIndex(0);
     setlimit(10);
-    setOffset(0);
-    setCount(0);
     setTotal(0);
     setLoading(false);
   }, [query]);
@@ -39,7 +35,7 @@ function ComicsGallery({
         setLoading(true);
 
         const response =
-          filter == ViewModel.CHARACTER
+          filter === ViewModel.CHARACTER
             ? await new CharacterService().getCharacterResourceByNameStartsWith(
                 queryIsId,
                 query,
@@ -54,23 +50,22 @@ function ComicsGallery({
               );
 
        
-        const { offset = 0, results = [], total = 0, count } = response || {};
+        const {results = [], total = 0 } = response || {};
         if (isSubscribed) {
           onSearchEnd();
-          setOffset(offset);
-          setCount(count);
           setTotal(total);
           setResults(results);
           setLoading(false);
         }
 
-        if (queryIsId && results.length == 1) handleSelect(results[0]);
+        if (queryIsId && results.length === 1) handleSelect(results[0]);
       }
     };
 
     fetch();
 
     return () => (isSubscribed = false);
+    // eslint-disable-next-line
   }, [index, query, filter]);
 
   const handleChange = (isNext) => {
@@ -102,9 +97,9 @@ function ComicsGallery({
           <PaginatorInfo side="flex-start">
             {query.length < 3
               ? `Ops... type minimun 3 characters for a searching`
-              : total == 0 && query.length >= 3
-              ? `Ops... ${total} result found for \"${query}\"`
-              : `All comics for \"${query}\" in ${total} results`}
+              : total === 0 && query.length >= 3
+              ? `Ops... ${total} result found for "${query}"`
+              : `All comics for "${query}" in ${total} results`}
           </PaginatorInfo>
         )}
       </ComicRow>
@@ -120,7 +115,7 @@ function ComicsGallery({
         )}
       </ComicRow>
       <ComicRow>
-        {query && !(total == 0 && query) && (
+        {query && !(total === 0 && query) && (
           <PaginatorInfo side="flex-end">
             {index + 1} / {Math.ceil(total / limit)}
           </PaginatorInfo>

@@ -66,7 +66,7 @@ export function MiniComicsList({ list, style = {} }) {
     <ComicRow style={style}>
       {list.length > 1 && (
         <Button
-          onClick={() => setIndex(index == 0 ? items.length - 1 : index - 1)}
+          onClick={() => setIndex(index === 0 ? items.length - 1 : index - 1)}
         >
           <FiChevronLeft size={24} />
         </Button>

@@ -19,7 +19,7 @@ export function MiniCharacterList({ list, style = {} }) {
   
   return (
     <ComicRow style={style}>
-      <Button onClick={() => setIndex(index == 0 ? list.length - 1 : index - 1)} >
+      <Button onClick={() => setIndex(index === 0 ? list.length - 1 : index - 1)} >
         <FiChevronLeft size={24} />
       </Button>
       <ComicRow>

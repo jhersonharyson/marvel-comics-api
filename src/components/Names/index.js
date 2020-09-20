@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { Container, Name } from "./styles";
 
 function Names({ name, left }) {

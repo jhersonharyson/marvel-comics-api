@@ -1,25 +1,19 @@
 import React, { useEffect, useState } from "react";
-import { FiArrowLeft } from "react-icons/fi";
-import { Link } from "react-router-dom";
+import ViewModel from "../../models/ViewModel";
+import CharacterComicsGallery from "../CharacterComicsGallery";
+import { MiniComicsList } from "../ComicsList";
 import Names from "../Names";
+import ReadMoreButton from "../ReadMoreButton";
 import {
   Box,
-  ComicTitle,
+  ComicCover, ComicTitle,
   Container,
   Flex,
   InformationBox,
-  Title,
-  TitleBar,
-  ComicCover,
   ResumeIsNotAvaliable,
-  StickPosition,
+  StickPosition, Title,
+  TitleBar
 } from "./styles";
-import { MiniComicsList } from "../ComicsList";
-import ReadMoreButton from "../ReadMoreButton";
-import ComicsGallery from "../ComicsGallery";
-import { Theme } from "../../models/HerosModel";
-import ViewModel from "../../models/ViewModel";
-import CharacterComicsGallery from "../CharacterComicsGallery";
 
 function MainComicsDetail({ comic, handleSelect }) {
   const [update, setUpdate] = useState(false);

@@ -81,7 +81,6 @@ export default class ComicsService {
         pageCount,
         name,
         comics,
-        series,
         urls = {},
       } = response.data.data.results[0];
 
