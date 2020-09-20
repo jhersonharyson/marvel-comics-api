@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { FiSearch } from "react-icons/fi";
 import { Link } from "react-router-dom";
@@ -6,7 +6,17 @@ import { Link } from "react-router-dom";
 import { HeaderBar, Logo, Navbar, Searchbar, Col, ComicsLabel } from "./styles";
 
 function Header() {
+  const [query, setQuery] = useState("");
   const comicsRouter = window.location.pathname.startsWith("/comics");
+
+  const handleSubmmit = (e) => {
+    e.preventDefault();
+    handleSelected(query);
+  };
+
+  const handleSelected = (comic) => {
+    return (window.location.href = `/comics?comicId=${comic}`);
+  };
 
   return (
     <HeaderBar>
@@ -21,12 +31,20 @@ function Header() {
           </li>
         </Navbar>
         {!comicsRouter && (
-          <Searchbar>
-            <button>
-              <FiSearch className="icon" size={18} color={"#dd4250"} />
-            </button>
-            <input />
-          </Searchbar>
+          <form onSubmit={handleSubmmit}>
+            <Searchbar>
+              <input
+                onChange={({ target }) => setQuery(target.value)}
+                value={query}
+                type="text"
+                autoComplete="off"
+                spellCheck={false}
+              />
+              <button type="submit">
+                <FiSearch className="icon" size={18} color={"#dd4250"} />
+              </button>
+            </Searchbar>
+          </form>
         )}
       </Col>
       <Col>{comicsRouter && <ComicsLabel>Comics</ComicsLabel>}</Col>

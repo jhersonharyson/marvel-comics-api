@@ -37,6 +37,14 @@ export const Navbar = styled.ul`
     list-style: none;
     padding-left: 35px;
     font-size: 18px;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    border-radius: 3px;
+    transition: transform 0.2s;
+    margin: 0 10px;
+
+    &:hover {
+      transform: scale(1.15);
+    }
   }
 
   li a {
@@ -50,16 +58,37 @@ export const Searchbar = styled.form`
   align-items: center;
   background-color: #fff;
   border-radius: 25px;
+
   padding: 8px 8px;
   padding-top: 2px;
   padding-bottom: 2px;
   margin-left: 35px;
+  margin-top: -4px;
+
   width: 300px;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  transition: transform 0.2s, width 1.5s;
+
+  &:focus-within {
+    transform: scale(1.15) translateX(18px);
+    width: 400px;
+  }
+  &:focus-within .help {
+    display: block
+  }
+  .help {
+    display: none
+  }
 
   input {
     border: none;
     outline: 0;
-    margin-left: 5px;
+    margin-left: 12px;
+    font-style: italic;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 22px;
+    width: 100%
   }
 
   button {
