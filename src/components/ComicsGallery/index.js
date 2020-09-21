@@ -3,7 +3,9 @@ import ViewModel from "../../models/ViewModel";
 import CharacterService from "../../services/CharacterService";
 import ComicsService from "../../services/ComicsService";
 import ComicsCarousel from "../ComicsCarousel";
+import LoadMoreButton from "../LoadMoreButton";
 import { ItemComicsList, LoadButton } from "../ComicsList";
+import Gallery from "../Gallery";
 import Loader from "../Loader";
 import { ComicCol, ComicRow, PaginatorInfo } from "./styles";
 
@@ -26,7 +28,7 @@ function ComicsGallery({
     setlimit(10);
     setTotal(0);
     setLoading(false);
-  }, [query]);
+  }, [query, filter]);
 
   useEffect(() => {
     let isSubscribed = true;
@@ -49,12 +51,11 @@ function ComicsGallery({
                 limit
               );
 
-       
-        const {results = [], total = 0 } = response || {};
+        const { total = 0 } = response || {};
         if (isSubscribed) {
           onSearchEnd();
           setTotal(total);
-          setResults(results);
+          setResults(results.concat(response.results));
           setLoading(false);
         }
 
@@ -77,21 +78,8 @@ function ComicsGallery({
     }
   };
 
-  const buildGallery = (items) => {
-    let gallery = [];
-
-    if (index > 0) gallery.push(<LoadButton onClick={handleChange} key={11} />);
-
-    gallery = [...gallery, ...items];
-
-    if (index + 1 < total / limit)
-      gallery.push(<LoadButton next onClick={handleChange} key={22} />);
-
-    return gallery;
-  };
-
   return (
-    <ComicCol>
+    <ComicCol style={{ display: "flex", flexDirection: "column" }}>
       <ComicRow>
         {query && (
           <PaginatorInfo side="flex-start">
@@ -103,21 +91,23 @@ function ComicsGallery({
           </PaginatorInfo>
         )}
       </ComicRow>
-      <ComicRow style={{ minHeight: "200px", paddingTop: "15px" }}>
-        {loading ? (
-          <Loader />
-        ) : (
-          <ComicsCarousel
-            items={buildGallery(
-              results.map((result, index) => <ItemComicsList comic={result} callback={handleSelect} key={index}/>)
-            )}
-          />
+      <ComicRow className="gallery">
+        <Gallery
+          items={results.map((result) => ({
+            comic: result,
+            callback: handleSelect,
+          }))}
+        />
+      </ComicRow>
+      <ComicRow className="load-more" style={{marginTop: "25px"}}>
+        {index + 1 < total / limit && (
+          <LoadMoreButton fill="#000" onClick={handleChange} />
         )}
       </ComicRow>
       <ComicRow>
         {query && !(total === 0 && query) && (
           <PaginatorInfo side="flex-end">
-            {index + 1} / {Math.ceil(total / limit)}
+            page {index + 1} of {Math.ceil(total / limit)}
           </PaginatorInfo>
         )}
       </ComicRow>

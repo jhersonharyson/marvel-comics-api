@@ -1,9 +1,22 @@
 import styled, { keyframes } from "styled-components";
 
 export const ComicRow = styled.div`
+  .gallery {
+    min-height: 200px;
+    padding-top: 25px;
+    padding-bottom: 35px;
+  }
 
+  .load-more {
+    min-height: 100px;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    justify-content: center;
+    display: flex;
+    margin-top: 25px;
+  }
 `;
-
 
 export const PaginatorInfo = styled.em`
   display: flex;
@@ -12,7 +25,7 @@ export const PaginatorInfo = styled.em`
   margin-top: 5px;
   margin-bottom: 15px;
   font-weight: 700;
-
+  font-size: 24px;
 `;
 
 const fadeInSlide = keyframes`
