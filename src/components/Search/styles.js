@@ -11,6 +11,10 @@ export const Searchbar = styled.form`
   width: 500px;
   height: 35px;
 
+  @media only screen and (max-width: 700px) {
+      width: 100%;
+  }
+
   input {
     border: none;
     outline: 0;

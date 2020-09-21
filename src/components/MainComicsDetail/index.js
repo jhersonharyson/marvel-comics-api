@@ -5,7 +5,7 @@ import CharacterComicsGallery from "../CharacterComicsGallery";
 import { MiniComicsList } from "../ComicsList";
 import Names from "../Names";
 import ReadMoreButton from "../ReadMoreButton";
-import {FiX} from 'react-icons/fi'
+import { FiX } from "react-icons/fi";
 import {
   Box,
   ComicCover,
@@ -24,28 +24,35 @@ import {
   TextDetail,
   ContainerDetail,
   ContainerCloseButton,
-  CloseButton
+  CloseButton,
 } from "./styles";
 
 function MainComicsDetail({ comic, handleSelect }) {
   const [update, setUpdate] = useState(false);
   let history = useHistory();
-  
+
   useEffect(() => {
     setUpdate(true);
     setTimeout(() => setUpdate(false), 500);
   }, [comic]);
 
   return (
-    <Container id="result" className="background-image" imageUrl={`url(${comic.thumbnail.path}/portrait_incredible.jpg)`}>
+    <Container
+      id="result"
+      className="background-image"
+      imageUrl={`url(${comic.thumbnail.path}/portrait_incredible.jpg)`}
+    >
       <Container className={"background-blur"}>
-        <ContainerCloseButton><CloseButton onClick={history.goBack}><FiX size={32}/></CloseButton></ContainerCloseButton>
+        <ContainerCloseButton>
+          <CloseButton onClick={history.goBack}>
+            <FiX size={32} />
+          </CloseButton>
+        </ContainerCloseButton>
         <Container>
           <Box>
             <TitleBar>
-              <ComicTitle>{comic.title || comic.name}</ComicTitle>
+              <ComicTitle>{comic.title || comic.name} </ComicTitle>
             </TitleBar>
-
             <Flex>
               <StickPosition>
                 <ComicCover
@@ -145,22 +152,21 @@ function MainComicsDetail({ comic, handleSelect }) {
                     </List>
                   </ContainerDetail>
                 )}
-
               </InformationBox>
             </Flex>
           </Box>
 
           <Box className={"right"}>
             <ContainerDetail style={{ alignSelf: "flex-end" }}>
-
-              <Names name={comic?.title?.split(" ")[0] || comic?.name?.split(" ")[0]} left={"flex-end"} />
+              <Names
+                name={comic?.title?.split(" ")[0] || comic?.name?.split(" ")[0]}
+                left={"flex-end"}
+              />
 
               {!!comic?.images?.length && (
                 <ContainerDetail>
                   <MiniComicsList list={comic.images} />
-                  <Title className="right">
-                    IMAGES
-                  </Title>
+                  <Title className="right">IMAGES</Title>
                 </ContainerDetail>
               )}
 
@@ -176,7 +182,6 @@ function MainComicsDetail({ comic, handleSelect }) {
                   </ContainerDetail>
                 </ContainerDetail>
               )}
-
             </ContainerDetail>
           </Box>
         </Container>

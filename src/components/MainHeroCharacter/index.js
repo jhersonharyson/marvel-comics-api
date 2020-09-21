@@ -25,7 +25,7 @@ function MainHeroCharacter() {
   const theme = useContext(Store);
 
   return (
-    <Container style={{ marginTop: "-56px" }}>
+    <Container style={{ marginTop: "-56px", overflow: "hidden" }}>
       <Col style={{ height: "30px" }}>
         <Link to={`/comics?characterId=${theme.characterId}`}>
           <ActionLabel>

@@ -45,6 +45,9 @@ export const Navbar = styled.ul`
     &:hover {
       transform: scale(1.15);
     }
+    @media only screen and (max-width: 700px) {
+      padding-left: 0;
+    }
   }
 
   li a {
@@ -116,9 +119,23 @@ export const ComicsLabel = styled.em`
   font-weight: bolder;
   text-align: right;
   animation: ${fadeInSlide} 1.2s forwards;
+  @media only screen and (max-width: 700px) {
+    display: none;
+  }
 `;
 
 export const Col = styled.div`
   display: flex;
   flex-direction: row;
+
+  /* Medium devices (landscape tablets, 768px and up) */
+  @media only screen and (max-width: 700px) {
+    flex-direction: column;
+
+    & > .search form {
+      margin-left: 0;
+      margin-top: 25px;
+      width: 75%;
+    }
+  }
 `;

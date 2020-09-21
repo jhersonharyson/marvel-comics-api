@@ -20,6 +20,13 @@ export const MiniCharacterListContainer = styled.div`
 
   margin-top: 12px;
   margin-bottom: 16px;
+
+  /* Medium devices (landscape tablets, 768px and up) */
+  @media only screen and (max-width: 700px) {
+    transform: scale(1.6);
+    margin-top: 55px;
+    margin-bottom: 55px;
+  }
 `;
 
 export const HeroNameLabel = styled.div`

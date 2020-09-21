@@ -19,6 +19,17 @@ export const Container = styled.div`
   padding: 0px 50px;
   margin-bottom: 10px;
 
+  @media only screen and (max-width: 700px) {
+    padding-left: 0;
+    margin-left: 0;
+    flex-direction: column;
+    overflow: hidden;
+    & > div {
+      margin-right: 0;
+      padding-right: 0;
+    }
+  }
+
   &.background-image {
     background-image: ${({ imageUrl }) => imageUrl};
     background-repeat: no-repeat;
@@ -64,20 +75,33 @@ export const Box = styled.div`
     justify-content: center;
     margin-top: 67px;
     max-height: 700px;
+    @media only screen and (max-width: 700px) {
+      justify-content: flex-start;
+    }
   }
 `;
 
 export const Flex = styled.div`
   display: flex;
+
+  @media only screen and (max-width: 1372px) {
+    padding-left: 0;
+    margin-left: 0;
+    flex-direction: column;
+  }
 `;
 
 export const StickPosition = styled.div`
-  position: -webkit-sticky;
-  position: sticky;
+  /* position: -webkit-sticky;
+  position: sticky; */
   top: 16px;
   z-index: 2;
   height: fit-content;
   padding-bottom: 16px;
+
+  @media only screen and (max-width: 700px) {
+    position: relative;
+  }
 `;
 
 export const ComicCover = styled.img.attrs(() => ({
@@ -114,6 +138,10 @@ export const ComicTitle = styled.h1`
   color: #fff;
   margin-left: 8px;
   margin-top: -36px;
+
+  @media only screen and (max-width: 700px) {
+    margin-top: 0px;
+  }
 `;
 
 export const ResumeIsNotAvaliable = styled.h1`
@@ -171,6 +199,11 @@ export const ContainerDetail = styled.div`
     display: flex;
     justify-content: flex-end;
     margin-top: 32px;
+
+    @media only screen and (max-width: 700px) {
+      justify-content: flex-start;
+      margin-left: 42px;
+    }
   }
 `;
 

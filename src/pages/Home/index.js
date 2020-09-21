@@ -9,9 +9,8 @@ import Store from "../../context/provider";
 
 import { Container } from "./styles";
 
-
 function Home() {
-  const theme = useContext(Store)
+  const theme = useContext(Store);
   return (
     <div style={{ display: "flex", flexDirection: "column", height: "100%" }}>
       <Header />
@@ -20,10 +19,10 @@ function Home() {
           <MainHeroList />
         </div>
         <div className="middle-content">
-          <Names name={theme.name} /> 
+          <Names name={theme.name} />
         </div>
         <div className="sidebar-right">
-        <MainHeroCharacter />
+          <MainHeroCharacter />
         </div>
       </Container>
       <Footer />

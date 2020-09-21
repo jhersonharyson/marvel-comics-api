@@ -21,8 +21,8 @@ function MainHeroList() {
     <Container>
       <ContainerList>
         <Col>
-          <SideIndicator principal={theme.name === HerosModel.SPIDER_MAN} />
           <SideIndicator principal={theme.name === HerosModel.BLACK_PANTHER} />
+          <SideIndicator principal={theme.name === HerosModel.SPIDER_MAN} />
           <SideIndicator principal={theme.name === HerosModel.IRON_MAN} />
         </Col>
         <LabelContainer>

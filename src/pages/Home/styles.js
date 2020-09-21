@@ -25,16 +25,32 @@ export const Container = styled.div`
     position: relative;
     padding: 40px 0 0 0;
     overflow: visible;
+
+    /* Medium devices (landscape tablets, 768px and up) */
+    @media only screen and (max-width: 700px) {
+      flex: none;
+      height: 136px;
+    }
   }
 
   .middle-content {
     display: flex;
     flex: 2;
+    /* Small devices (portrait tablets and large phones, 600px and up) */
+    @media only screen and (max-width: 700px) {
+      display: none;
+    }
   }
 
   .sidebar-right {
     display: flex;
     flex: 1;
+  }
+
+  /* Small devices (portrait tablets and large phones, 600px and up) */
+  @media only screen and (max-width: 700px) {
+    flex-direction: column;
+    font-size: 24px;
   }
 `;
 

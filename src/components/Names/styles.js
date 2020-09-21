@@ -21,4 +21,15 @@ export const Name = styled.em`
   &:hover {
     transform: scale(1.15);
   }
+
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (max-width: 700px) {
+  font-size: 15px
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (max-width: 1000px) {
+  font-size: 32px
+}
 `;

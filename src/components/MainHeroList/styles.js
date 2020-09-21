@@ -14,11 +14,27 @@ export const LabelContainer = styled.div`
   justify-content: flex-start;
   margin-left: 32px;
   margin-top: 4px;
+
+  /* Medium devices (landscape tablets, 768px and up) */
+  @media only screen and (max-width: 700px) {
+    margin-left: 0px;
+    flex-direction: row;
+    width: 100%;
+
+    & > div {
+      flex: 1;
+      justify-content: center;
+      height: 60px;
+    }
+  }
 `;
 
 export const HeroNameLabel = styled.div`
   font-size: 15px;
   font-weight: bold;
+  @media only screen and (max-width: 700px) {
+    font-size: 13px;
+  }
 `;
 
 export const Container = styled.div`
@@ -40,6 +56,11 @@ export const ActorNameLabel = styled.div`
   font-size: 10px;
   font-weight: 200;
   margin-top: 3px;
+
+  @media only screen and (max-width: 700px) {
+    display: none;
+  }
+
 `;
 export const CharacterLabel = styled.div`
   margin-bottom: 24px;
@@ -49,6 +70,10 @@ export const CharacterLabel = styled.div`
 
   &:hover {
     transform: scale(1.15);
+  }
+
+  @media only screen and (max-width: 700px) {
+    margin-top: -25px;
   }
 
   ${({ active }) => (active ? "transform: scale(1.1);" : "")}
@@ -82,4 +107,9 @@ export const Searchbar = styled.input`
   outline: 0;
 `;
 
-export const Col = styled.div``;
+export const Col = styled.div`
+  /* Small devices (portrait tablets and large phones, 600px and up) */
+  @media only screen and (max-width: 700px) {
+    display: none;
+  }
+`;
