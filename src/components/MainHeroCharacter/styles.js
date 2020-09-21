@@ -101,3 +101,19 @@ export const ActionLabel = styled.div`
     font-size: 20px;
   }
 `;
+
+export const ResumeIsNotAvailable = styled.h1`
+  color: #513d3d;
+  font-size: 12px;
+  font-weight: 900;
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-radius: 5px;
+  background-color: #fff;
+  width: 90px;
+  margin-bottom: 35px;
+  text-align: center;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+`;

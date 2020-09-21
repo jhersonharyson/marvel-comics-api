@@ -15,6 +15,7 @@ function App() {
   const [comics, setComics] = useState([]);
   const [hero, setHero] = useState({});
   const [selected, setSelected] = useState({});
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     let isSubscribed = true;
@@ -33,7 +34,9 @@ function App() {
       if (isSubscribed) {
         setHero(character);
         setComics([]);
-        setComics(comics.results);
+        setComics(comics?.results || {});
+        setLoading(false);
+
       }
     };
 
@@ -44,6 +47,7 @@ function App() {
 
   const dispatch = (newTheme) => {
     setCurrentTheme(theme[newTheme]);
+    setLoading(true);
   };
 
   const dispatchSelected = (selected) => {
@@ -51,7 +55,7 @@ function App() {
   };
 
   return (
-    <StoreProvider value={{ ...currentTheme, hero, comics, selected, dispatch, dispatchSelected }}>
+    <StoreProvider value={{ ...currentTheme, hero, comics, selected, dispatch, dispatchSelected, loading }}>
       <MainContainer data-testid="app-main-div" imageUrl={`url(${backgroundTexture})`}>
         <MainContainerBars imageUrl={`url(${backgroundBar})`}>
           <MainContainerBackground imageUrl={`url(${currentTheme.background})`}>

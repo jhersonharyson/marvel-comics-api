@@ -19,7 +19,7 @@ export function ItemComicsList({ comic, callback = () => {} }) {
     <div key={comic?.id} onClick={() => callback(comic)}>
       <ComicCover
         className={loaded}
-        style={{ marginLeft: 8, marginRight: 0, width: 100 }}
+        style={{ marginLeft: 8, marginRight: 0, width: 100, cursor: "pointer" }}
         src={`${comic?.thumbnail?.path}/portrait_medium.jpg`}
         alt={comic?.title}
         onLoad={handleImageLoaded}

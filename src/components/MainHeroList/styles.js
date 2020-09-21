@@ -45,6 +45,7 @@ export const CharacterLabel = styled.div`
   margin-bottom: 24px;
   margin-top: 8px;
   transition: 0.3s;
+  cursor: pointer;
 
   &:hover {
     transform: scale(1.15);

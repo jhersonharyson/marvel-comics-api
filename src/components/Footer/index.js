@@ -3,6 +3,7 @@ import { FiChevronRight } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import { ItemComicsList } from "../ComicsList";
 import FooterCarousel from "../FooterCarousel";
+import Loader from "../Loader";
 import Store from "./../../context/provider";
 import { ActionLabel, CarouselContainer, Container } from "./styles";
 
@@ -22,7 +23,9 @@ function Footer() {
         </ActionLabel>
       </Link>
       <CarouselContainer>
-        {!!store.comics.length && (
+        {store.loading ? (
+          <Loader />
+        ) : !!store.comics.length && (
           <FooterCarousel
             items={store?.comics?.map((comic, index) => <ItemComicsList comic={comic} callback={handleSelected} key={index}/>)}
           />

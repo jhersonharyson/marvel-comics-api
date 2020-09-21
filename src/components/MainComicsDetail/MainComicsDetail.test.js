@@ -46,7 +46,7 @@ describe("MainComicsDetail component specs", () => {
     const { getByText } = render(
       shalowView({ comic: { description: null, thumbnail: { path: "" } } })
     );
-    expect(getByText("Not avaiable")).toBeInTheDocument();
+    expect(getByText("Not available")).toBeInTheDocument();
   });
 
   it("should render Creator list in document's MainComicsDetail", () => {

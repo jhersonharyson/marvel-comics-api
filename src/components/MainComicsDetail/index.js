@@ -80,7 +80,7 @@ function MainComicsDetail({ comic, handleSelect }) {
                 {!!comic?.description ? (
                   <Text>{comic.description}</Text>
                 ) : (
-                  <ResumeIsNotAvaliable>Not avaiable</ResumeIsNotAvaliable>
+                  <ResumeIsNotAvaliable>Not available</ResumeIsNotAvaliable>
                 )}
 
                 {!!comic?.creators?.length && (
