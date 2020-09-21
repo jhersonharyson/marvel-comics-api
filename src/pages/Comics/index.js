@@ -57,9 +57,9 @@ function Comics() {
     !!query && setLoading(true);
   };
 
-  const onSerachChange = (query) => {
-    setQuery(query);
-    setLoading(`${query}`.length >= 3 ? true : false);
+  const onSerachChange = (search) => {
+    setQuery(search);
+    setLoading(`${search.query}`.length >= 3 ? true : false);
   };
 
   const onSearchEnd = () => {

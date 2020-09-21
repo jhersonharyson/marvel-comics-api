@@ -49,7 +49,7 @@ function Search({ loading = true, onChange = () => {}, initilize = {} }) {
 
   return (
     <Container>
-      <Searchbar>
+      <Searchbar onSubmit={(e)=>e.preventDefault()}>
         <label className="dropdown">
           <div className="dd-button">{filters[filter]} </div> <div className="dd-button-after"> <FiChevronDown className="icon" size={24} color={"#dd4250"} /> </div>
           <input type="checkbox" className="dd-input" id="test" />
