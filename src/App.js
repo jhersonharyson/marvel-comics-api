@@ -51,6 +51,7 @@ function App() {
   return (
     <StoreProvider value={{ ...currentTheme, hero, comics, dispatch }}>
       <div
+        data-testid="app-main-div"
         style={{
           backgroundImage: `url(${backgroundTexture})`,
           backgroundRepeat: "repeat",
@@ -85,7 +86,7 @@ function App() {
               }}
             >
               <Globalstyles color={currentTheme.color} />
-              <Routes />
+              <Routes/>
             </div>
           </div>
         </div>
