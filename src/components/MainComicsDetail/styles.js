@@ -4,6 +4,29 @@ export const Container = styled.div`
   display: flex;
   padding: 0px 50px;
   margin-bottom: 10px;
+
+  &.background-image {
+    background-image: ${({ imageUrl }) => imageUrl};
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100vw;
+    padding: 0;
+    margin-bottom: 0;
+    padding-bottom: 0;
+    min-height: 125%;
+    position: absolute;
+    top: 100vh;
+  }
+
+  &.background-blur {
+    background: rgba(171, 153, 153, 0.15);
+    backdrop-filter: blur(50px);
+    width: 100vw;
+    margin-bottom: 0;
+    padding-bottom: 0;
+    padding-top: 45px;
+    flex-direction: column;
+  }
 `;
 
 export const SearchContainerField = styled.div`
@@ -15,6 +38,12 @@ export const SearchContainerField = styled.div`
 
 export const Box = styled.div`
   flex: 1;
+
+  &.right {
+    justify-content: center;
+    margin-top: 67px;
+    max-height: 700px;
+  }
 `;
 
 export const Flex = styled.div`
@@ -42,6 +71,8 @@ export const ComicCover = styled.img.attrs(() => ({
     transform: scale(1.15);
   }
 `;
+
+export const Item = styled.a``;
 
 export const TitleBar = styled.div`
   display: flex;
@@ -100,4 +131,21 @@ export const Title = styled.h2`
   font-size: 18px;
   font-weight: 700;
   margin-bottom: 10px;
+
+  &.right {
+    margin-right: 10;
+    margin-top: 15;
+  }
+`;
+
+export const List = styled.ul``;
+export const ListItem = styled.li``;
+export const Text = styled.p``;
+export const TextDetail = styled.span``;
+export const ContainerDetail = styled.div`
+  &.right {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 32px;
+  }
 `;

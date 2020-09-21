@@ -6,46 +6,34 @@ import Names from "../Names";
 import ReadMoreButton from "../ReadMoreButton";
 import {
   Box,
-  ComicCover, ComicTitle,
+  ComicCover,
+  ComicTitle,
   Container,
   Flex,
   InformationBox,
   ResumeIsNotAvaliable,
-  StickPosition, Title,
-  TitleBar
+  StickPosition,
+  Title,
+  TitleBar,
+  Item,
+  Text,
+  List,
+  ListItem,
+  TextDetail,
+  ContainerDetail,
 } from "./styles";
 
 function MainComicsDetail({ comic, handleSelect }) {
   const [update, setUpdate] = useState(false);
+  
   useEffect(() => {
     setUpdate(true);
     setTimeout(() => setUpdate(false), 500);
   }, [comic]);
+
   return (
-    <Container
-      id="result"
-      style={{
-        backgroundImage: `url(${comic.thumbnail.path}/portrait_incredible.jpg)`,
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "cover",
-        width: "100vw",
-        padding: 0,
-        marginBottom: 0,
-        paddingBbottom: 0,
-        minHeight: "125%",
-      }}
-    >
-      <Container
-        style={{
-          background: "rgba(171, 153, 153, 0.15)",
-          backdropFilter: "blur(50px)",
-          width: "100vw",
-          marginBottom: 0,
-          paddingBbottom: 0,
-          paddingTop: "45px",
-          flexDirection: "column",
-        }}
-      >
+    <Container id="result" className="background-image" imageUrl={`url(${comic.thumbnail.path}/portrait_incredible.jpg)`}>
+      <Container className={"background-blur"}>
         <Container>
           <Box>
             <TitleBar>
@@ -59,147 +47,134 @@ function MainComicsDetail({ comic, handleSelect }) {
                   alt="comics"
                   style={{ width: 216 * 1.5, height: 346 * 1.5 }}
                 />
+
                 {!!comic?.urls?.length && (
-                  <a href={comic.urls[0].url} target="blank">
+                  <Item href={comic.urls[0].url} target="blank">
                     <ReadMoreButton fill="#000" width={216 * 1.5} />
-                  </a>
+                  </Item>
                 )}
               </StickPosition>
 
               <InformationBox>
                 {!!comic?.title && (
-                  <>
+                  <ContainerDetail>
                     <Title>TITLE</Title>
-                    <p>{comic.title}</p>
-                  </>
+                    <Text>{comic.title}</Text>
+                  </ContainerDetail>
                 )}
 
                 {!!comic?.name && (
-                  <>
+                  <ContainerDetail>
                     <Title>NAME</Title>
-                    <p>{comic.name}</p>
-                  </>
+                    <Text>{comic.name}</Text>
+                  </ContainerDetail>
                 )}
 
                 <Title>RESUME</Title>
                 {!!comic?.description ? (
-                  <p>{comic.description}</p>
+                  <Text>{comic.description}</Text>
                 ) : (
                   <ResumeIsNotAvaliable>Not avaiable</ResumeIsNotAvaliable>
                 )}
 
                 {!!comic?.creators?.length && (
-                  <>
+                  <ContainerDetail>
                     <Title>CREATORS</Title>
-                    <ul>
+                    <List>
                       {comic?.creators?.map(({ name, role }, index) => (
-                        <li key={index}>
+                        <ListItem key={index}>
                           {name}
-                          <span> ({role})</span>
-                        </li>
+                          <TextDetail> ({role})</TextDetail>
+                        </ListItem>
                       ))}
-                    </ul>
-                  </>
+                    </List>
+                  </ContainerDetail>
                 )}
 
                 {!!comic?.stories?.length && (
-                  <>
+                  <ContainerDetail>
                     <Title>STORIES</Title>
-                    <ul>
+                    <List>
                       {comic?.stories?.map(({ name, type }, index) => (
-                        <li key={index}>
+                        <ListItem key={index}>
                           {name}
-                          <span> ({type})</span>
-                        </li>
+                          <TextDetail> ({type})</TextDetail>
+                        </ListItem>
                       ))}
-                    </ul>
-                  </>
+                    </List>
+                  </ContainerDetail>
                 )}
 
                 {!!comic?.characters?.length && (
-                  <>
+                  <ContainerDetail>
                     <Title>CHARACTERS</Title>
-                    <ul>
+                    <List>
                       {comic?.characters?.map(({ name }, index) => (
-                        <li key={index}>{name}</li>
+                        <ListItem key={index}>{name}</ListItem>
                       ))}
-                    </ul>
-                  </>
+                    </List>
+                  </ContainerDetail>
                 )}
 
                 {!!comic?.dates?.length && (
-                  <>
+                  <ContainerDetail>
                     <Title>ONSALE DATE</Title>
-                    <p>{new Date(comic?.dates[0]["date"]).toDateString()}</p>
-                  </>
+                    <Text>
+                      {new Date(comic?.dates[0]["date"]).toDateString()}
+                    </Text>
+                  </ContainerDetail>
                 )}
 
                 {!!comic?.urls?.length && (
-                  <>
+                  <ContainerDetail>
                     <Title>LINKS</Title>
-                    <ul>
+                    <List>
                       {comic?.urls?.map(({ url, type }, index) => (
-                        <li key={index}>
-                          <a href={url} target="blank">
+                        <ListItem key={index}>
+                          <Item href={url} target="blank">
                             {type?.toUpperCase()}
-                          </a>
-                        </li>
+                          </Item>
+                        </ListItem>
                       ))}
-                    </ul>
-                  </>
+                    </List>
+                  </ContainerDetail>
                 )}
+
               </InformationBox>
             </Flex>
           </Box>
-          <Box
-            style={{
-              justifyContent: "center",
-              marginTop: "67px",
-              maxHeight: "700px",
-            }}
-          >
-            <div style={{ alignSelf: "flex-end" }}>
-              <Names
-                name={comic?.title?.split(" ")[0] || comic?.name?.split(" ")[0]}
-                left={"flex-end"}
-              />
+
+          <Box className={"right"}>
+            <ContainerDetail style={{ alignSelf: "flex-end" }}>
+
+              <Names name={comic?.title?.split(" ")[0] || comic?.name?.split(" ")[0]} left={"flex-end"} />
 
               {!!comic?.images?.length && (
-                <>
+                <ContainerDetail>
                   <MiniComicsList list={comic.images} />
-                  <Title
-                    style={{
-                      marginRight: 10,
-                      marginTop: 15,
-                      textAlign: "right",
-                    }}
-                  >
+                  <Title classname="right">
                     Images
                   </Title>
-                </>
+                </ContainerDetail>
               )}
 
               {!!comic?.events?.length && (
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "flex-end",
-                    marginTop: "32px",
-                  }}
-                >
-                  <div style={{ minWidth: "200px" }}>
+                <ContainerDetail className={"right"}>
+                  <ContainerDetail style={{ minWidth: "200px" }}>
                     <Title style={{ marginLeft: "-16px" }}>EVENTS</Title>
-                    <ul>
+                    <List>
                       {comic?.events?.map(({ name }, index) => (
-                        <li key={index}>{name}</li>
+                        <ListItem key={index}>{name}</ListItem>
                       ))}
-                    </ul>
-                  </div>
-                </div>
+                    </List>
+                  </ContainerDetail>
+                </ContainerDetail>
               )}
-            </div>
+
+            </ContainerDetail>
           </Box>
         </Container>
+
         {!update && (
           <CharacterComicsGallery
             isComic={!!comic.title}
