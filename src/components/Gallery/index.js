@@ -7,14 +7,12 @@ import { Container } from "./styles";
 function Gallery({ items = [] }) {
   return (
     <Container>
-      <div class="my_container">
+      <div className="my_container">
         <ul>
           {items.map(({ comic, callback }, index) => (
-            <li class="block" key={index} onClick={() => callback(comic)}>
-              <a href="#">
+            <li className="block" key={index} onClick={() => callback(comic)}>
                 <ImageLazyLoad comic={comic} />
                 <span>{comic?.title || comic?.name}</span>
-              </a>
             </li>
           ))}
         </ul>
