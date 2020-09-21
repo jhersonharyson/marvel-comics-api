@@ -14,6 +14,7 @@ function App() {
   const [currentTheme, setCurrentTheme] = useState(theme["SPIDER_MAN"]);
   const [comics, setComics] = useState([]);
   const [hero, setHero] = useState({});
+  const [selected, setSelected] = useState({});
 
   useEffect(() => {
     let isSubscribed = true;
@@ -45,8 +46,12 @@ function App() {
     setCurrentTheme(theme[newTheme]);
   };
 
+  const dispatchSelected = (selected) => {
+    setSelected(selected);
+  };
+
   return (
-    <StoreProvider value={{ ...currentTheme, hero, comics, dispatch }}>
+    <StoreProvider value={{ ...currentTheme, hero, comics, selected, dispatch, dispatchSelected }}>
       <MainContainer data-testid="app-main-div" imageUrl={`url(${backgroundTexture})`}>
         <MainContainerBars imageUrl={`url(${backgroundBar})`}>
           <MainContainerBackground imageUrl={`url(${currentTheme.background})`}>

@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
 import ViewModel from "../../models/ViewModel";
 import CharacterComicsGallery from "../CharacterComicsGallery";
 import { MiniComicsList } from "../ComicsList";
 import Names from "../Names";
 import ReadMoreButton from "../ReadMoreButton";
+import {FiX} from 'react-icons/fi'
 import {
   Box,
   ComicCover,
@@ -21,10 +23,13 @@ import {
   ListItem,
   TextDetail,
   ContainerDetail,
+  ContainerCloseButton,
+  CloseButton
 } from "./styles";
 
 function MainComicsDetail({ comic, handleSelect }) {
   const [update, setUpdate] = useState(false);
+  let history = useHistory();
   
   useEffect(() => {
     setUpdate(true);
@@ -34,6 +39,7 @@ function MainComicsDetail({ comic, handleSelect }) {
   return (
     <Container id="result" className="background-image" imageUrl={`url(${comic.thumbnail.path}/portrait_incredible.jpg)`}>
       <Container className={"background-blur"}>
+        <ContainerCloseButton><CloseButton onClick={history.goBack}><FiX size={32}/></CloseButton></ContainerCloseButton>
         <Container>
           <Box>
             <TitleBar>
@@ -152,8 +158,8 @@ function MainComicsDetail({ comic, handleSelect }) {
               {!!comic?.images?.length && (
                 <ContainerDetail>
                   <MiniComicsList list={comic.images} />
-                  <Title classname="right">
-                    Images
+                  <Title className="right">
+                    IMAGES
                   </Title>
                 </ContainerDetail>
               )}

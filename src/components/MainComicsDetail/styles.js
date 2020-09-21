@@ -1,4 +1,18 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
+
+const slideUp = keyframes`
+from{
+    margin-top: 0;
+    opacity: 0;
+    z-index: -100;
+    right: 100vw;
+}to{
+    margin-top: 0;
+    opacity: 1;
+    right: 100vw;
+    z-index: 100;
+}
+`;
 
 export const Container = styled.div`
   display: flex;
@@ -15,7 +29,14 @@ export const Container = styled.div`
     padding-bottom: 0;
     min-height: 125%;
     position: absolute;
-    top: 100vh;
+    /* opacity: 0; */
+    /* z-index: -100; */
+    top: 0;
+  }
+
+  &.modal {
+    z-index: 100;
+    animation: ${slideUp} 3s forwards;
   }
 
   &.background-blur {
@@ -91,6 +112,8 @@ export const TitleBar = styled.div`
 
 export const ComicTitle = styled.h1`
   color: #fff;
+  margin-left: 8px;
+  margin-top: -36px;
 `;
 
 export const ResumeIsNotAvaliable = styled.h1`
@@ -133,8 +156,9 @@ export const Title = styled.h2`
   margin-bottom: 10px;
 
   &.right {
-    margin-right: 10;
-    margin-top: 15;
+    text-align: right;
+    margin-top: 10px;
+    margin-right: 10px;
   }
 `;
 
@@ -147,5 +171,16 @@ export const ContainerDetail = styled.div`
     display: flex;
     justify-content: flex-end;
     margin-top: 32px;
+  }
+`;
+
+export const ContainerCloseButton = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 50px;
+`;
+export const CloseButton = styled.div`
+  &:hover {
+    transform: scale(1.15);
   }
 `;

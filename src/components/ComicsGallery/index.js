@@ -1,12 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import ViewModel from "../../models/ViewModel";
 import CharacterService from "../../services/CharacterService";
 import ComicsService from "../../services/ComicsService";
-import ComicsCarousel from "../ComicsCarousel";
-import LoadMoreButton from "../LoadMoreButton";
-import { ItemComicsList, LoadButton } from "../ComicsList";
 import Gallery from "../Gallery";
-import Loader from "../Loader";
+import LoadMoreButton from "../LoadMoreButton";
 import { ComicCol, ComicRow, PaginatorInfo } from "./styles";
 
 function ComicsGallery({
@@ -21,8 +18,9 @@ function ComicsGallery({
   const [limit, setlimit] = useState(10);
   const [total, setTotal] = useState(0);
   const [loading, setLoading] = useState(false);
+  const [lastFilter, setLastFilter] = useState({});
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     setResults([]);
     setIndex(0);
     setlimit(10);
@@ -55,8 +53,13 @@ function ComicsGallery({
         if (isSubscribed) {
           onSearchEnd();
           setTotal(total);
-          setResults(results.concat(response.results));
+          if(lastFilter.query !== query || lastFilter.filter !== filter) { // is new Query
+            setResults(response?.results || []);
+          }else{
+            setResults(results.concat(response?.results || []));
+          }
           setLoading(false);
+          setLastFilter({query, filter})
         }
 
         if (queryIsId && results.length === 1) handleSelect(results[0]);

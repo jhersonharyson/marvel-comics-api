@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { Redirect } from "react-router-dom";
 import ComicsGallery from "../../components/ComicsGallery";
 import Header from "../../components/Header";
-import MainComicsDetail from "../../components/MainComicsDetail";
 import Search from "../../components/Search";
 import ViewModel from "../../models/ViewModel";
+import Store from "./../../context/provider";
 import { SearchContainerField } from "./styles";
 
 function Comics() {
@@ -15,6 +16,7 @@ function Comics() {
     filter: "",
     queryIsId: false,
   });
+  const store = useContext(Store);
 
   useEffect(() => {
     const comicId = getComicIdByQueryUrl(getUrlParams());
@@ -68,14 +70,8 @@ function Comics() {
 
   const handleSelect = (selected) => {
     setSelected(selected);
-
-    setTimeout(() => {
-      const result = document.querySelector("#result");
-      !!result &&
-        result.scrollIntoView({
-          behavior: "smooth",
-        });
-    }, 200);
+    store.dispatchSelected(selected);
+    return;
   };
 
   return (
@@ -94,7 +90,13 @@ function Comics() {
         />
       </SearchContainerField>
       {!!selected.id && (
-        <MainComicsDetail comic={selected} handleSelect={handleSelect} />
+        <Redirect 
+          push
+          to={{
+            pathname: "/detail",
+            search: `?filter=${query.filter}&${query.filter === ViewModel.COMICS ? 'comicId' : 'characterId'}=${query.query}&id${selected.id}`,
+          }}
+        />
       )}
     </>
   );
