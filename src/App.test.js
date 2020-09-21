@@ -11,16 +11,4 @@ describe("App component specs", () => {
     const { getByTestId } = render(shalowView());
     expect(getByTestId("app-main-div")).toBeInTheDocument();
   });
-
-//   it("should render Router in App main component", () => {
-//     const { getByTestId } = render(shalowView());
-//     expect(getByTestId("app-global-styles")).toBeInTheDocument();
-//   });
-
-  // it("should render Actors name in document's App", () => {
-  //   const { getByText } = render(shalowView());
-  //   expect(getByText(ActorNames.BLACK_PANTHER)).toBeInTheDocument();
-  //   expect(getByText(ActorNames.SPIDER_MAN)).toBeInTheDocument();
-  //   expect(getByText(ActorNames.IRON_MAN)).toBeInTheDocument();
-  // });
 });
