@@ -51,7 +51,7 @@ function MainComicsDetail({ comic, handleSelect }) {
         <Container>
           <Box>
             <TitleBar>
-              <ComicTitle>{comic.title || comic.name} </ComicTitle>
+              <ComicTitle>{comic.title || comic.name}</ComicTitle>
             </TitleBar>
             <Flex>
               <StickPosition>
